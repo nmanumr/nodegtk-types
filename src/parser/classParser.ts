@@ -40,8 +40,8 @@ export class ClassParser {
 
     private getVersionInfo(methodId) {
         return {
-            added: this.$(`[id="${methodId}"]+dd>.versionadded`).text().replace(/\n/gm, ' '),
-            deprecated: this.$(`[id="${methodId}"]+dd>.deprecated`).text().replace(/\n/gm, ' '),
+            added: this.$(`[id="${methodId}"]+dd>.versionadded`).text().replace(/\n/gm, ' ').trim(),
+            deprecated: this.$(`[id="${methodId}"]+dd>.deprecated`).text().replace(/\n/gm, ' ').trim(),
         };
 
     }
@@ -159,14 +159,26 @@ export class ClassParser {
             }))
         })
 
+        this.$('#fields table:last-of-type tbody tr').each((i, el) => {
+            attrs.push(new Property({
+                deprecated: !!this.$(el).find('td:nth-child(4)').text().match('deprecated'),
+                name: this.$(el).find('td:nth-child(1)').text(),
+                type: this.$(el).find('td:nth-child(2) a code').text(),
+                flags: this.parseFlags(this.$(el).find('td:nth-child(3)').text()),
+                docStr: this.$(el).find('td:nth-child(4)').text()
+            }))
+        })
+
         return attrs;
     }
 
     private parseClass() {
         var attrs = this.parseAttr();
         var bases = [], isAbstract;
-        var name = this.$('#class-details>dl>dt').attr('id');
-        this.$('#class-details>dl>dd>table:first-child>tbody>tr').each((i, el) => {
+        var detailId = this.$('#class-details').length ? '#class-details' : '#details';
+        var name = this.$(`${detailId}>dl>dt`).attr('id');
+
+        this.$(`${detailId}>dl>dd>table:first-child>tbody>tr`).each((i, el) => {
             var type = this.$(el).find('th').text();
             if (type == 'Bases:') {
                 this.$(el).find('td>a>code').each((i, base) => {
@@ -177,7 +189,8 @@ export class ClassParser {
                 isAbstract = this.$(el).find('td').text() != 'No';
             }
         });
-        var docStr = this.$('#class-details>dl>dd>p:first-of-type').text();
+
+        var docStr = this.$(`${detailId}>dl>dd>p:first-of-type`).text();
 
         return new Klass({
             name: name,
@@ -190,7 +203,7 @@ export class ClassParser {
 
     parse(text: string) {
         this.$ = cheerio.load(text);
-        this.methodIdBase = this.$('.cuass>dt').attr('id');
+        this.methodIdBase = this.$('.class>dt').attr('id');
         return this.parseClass();
     }
 }

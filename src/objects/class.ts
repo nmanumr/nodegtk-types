@@ -1,34 +1,26 @@
 import * as str from 'lodash/string'
 import { FunctionArg } from './function';
+import { BaseObject } from './shared';
 
-export class Klass {
-    name: string;
-    docStr: string;
+export class Klass extends BaseObject {
     bases: string[];
     isAbstract: boolean;
     attrs: Method[] | Property[];
 
     constructor(prop) {
-        this.name = prop.name;
-        this.docStr = prop.docStr;
+        super(prop);
+        
         this.bases = prop.bases;
         this.isAbstract = prop.isAbstract;
         this.attrs = prop.attrs;
     }
 }
 
-export abstract class ClassAttr {
-    name: string;
-    docStr: string;
-    deprecationNote: string;
-    versionNote: string;
+export abstract class ClassAttr extends BaseObject {
 
     constructor(prop) {
+        super(prop);
         this.name = str.camelCase(prop.name);
-        this.docStr = prop.docStr;
-        this.docStr = prop.docStr;
-        this.deprecationNote = prop.deprecated;
-        this.versionNote = prop.added;
     }
 }
 
