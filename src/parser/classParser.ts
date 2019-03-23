@@ -1,28 +1,21 @@
-const cheerio = require('cheerio');
-const klass = require('./class');
+import * as cheerio from 'cheerio';
+import { MethodArg, Method, Property, Klass, Function } from '../objects/class';
 
-module.exports = class ClassParser {
-    constructor(text) {
+
+export class ClassParser {
+    $: CheerioStatic;
+    methodIdBase: string;
+
+    constructor(text=''){
         this.$ = cheerio.load(text);
-        this.methodIdBase = this.$('.class>dt').attr('id');
     }
 
-    _getName(methodNode) {
-        var text = this.$(methodNode).children('td:last-child').text();
-        return text.split(' (')[0];
-    }
-
-    _isClassMethod(methodNode) {
-        var text = this.$(methodNode).children('td:first-child').text();
-        return text.trim() == 'class';
-    }
-
-    _getMethodArgs(argsEl) {
+    private getMethodArgs(argsEl) {
         var args = []
         if (this.$(argsEl).find('li').length) {
             this.$(argsEl).find('li').each((i, el) => {
 
-                args.push(new klass.MethodArg({
+                args.push(new MethodArg({
                     name: this.$(el).find('strong').text(),
                     type: this.$(el).find('a:first-of-type code').text(),
                     docStr: this.$(el).text().replace(/.* \(.*\) – /, '').replace(/\n/gm, ' ')
@@ -31,7 +24,7 @@ module.exports = class ClassParser {
         }
         else if (this.$(argsEl).children('strong').length) {
             var isList = !!this.$(argsEl).text().match(/^.* \(\[.*\]\) – /i);
-            args.push(new klass.MethodArg({
+            args.push(new MethodArg({
                 name: this.$(argsEl).find('strong').text(),
                 type: this.$(argsEl).find('a:first-of-type code').text() + (isList ? '[]' : ''),
                 docStr: this.$(argsEl).text().replace(/.* \(.*\) – /, '').replace(/\n/gm, ' ')
@@ -41,11 +34,11 @@ module.exports = class ClassParser {
         return args;
     }
 
-    _getMethodDocStr(methodId) {
+    private getMethodDocStr(methodId) {
         return this.$(`[id="${methodId}"]+dd>p:first-of-type`).text().replace(/\n/gm, ' ');
     }
 
-    _getVersionInfo(methodId) {
+    private getVersionInfo(methodId) {
         return {
             added: this.$(`[id="${methodId}"]+dd>.versionadded`).text().replace(/\n/gm, ' '),
             deprecated: this.$(`[id="${methodId}"]+dd>.deprecated`).text().replace(/\n/gm, ' '),
@@ -53,7 +46,7 @@ module.exports = class ClassParser {
 
     }
 
-    _getMethodReturn(els) {
+    private getMethodReturn(els) {
         var returns = {
             docStr: null,
             type: []
@@ -88,20 +81,19 @@ module.exports = class ClassParser {
         return returns;
     }
 
-    _getMethodDetails(methodName) {
-        var methodId = this.methodIdBase + '.' + methodName;
+    private getMethodDetails(methodId) {
         var detailsEl = this.$(`[id="${methodId}"]+dd table:first-of-type tbody tr`);
 
         return {
-            args: this._getMethodArgs(this.$(detailsEl[0]).children('.field-body')),
-            returns: this._getMethodReturn(detailsEl),
-            docStr: this._getMethodDocStr(methodId),
-            ...this._getVersionInfo(methodId)
+            args: this.getMethodArgs(this.$(detailsEl[0]).children('.field-body')),
+            returns: this.getMethodReturn(detailsEl),
+            docStr: this.getMethodDocStr(methodId),
+            ...this.getVersionInfo(methodId)
         }
 
     }
 
-    _parseFlags(flagStr) {
+    private parseFlags(flagStr) {
         var readable = !!flagStr.match('r');
         var writeable = !!flagStr.match('w');
         var constructable = !!flagStr.match('c');
@@ -115,9 +107,9 @@ module.exports = class ClassParser {
         }
     }
 
-    _parseAttr() {
-        var attrs = [];
-        this.$('.class>dd>dl').each((i, el) => {
+    public parseMethods(methodEls) {
+        var methods = []
+        this.$(methodEls).each((i, el) => {
             var isVirtual = this.$(el).find('.property').text().trim() == 'virtual';
 
             if (!isVirtual) {
@@ -125,29 +117,44 @@ module.exports = class ClassParser {
                 var name = this.$(el).find('.descname').text();
 
                 var isAttr = this.$(el).hasClass('attribute');
-                if (isAttr) {
-                    attrs.push({ name: name, isAttr: true });
-                }
-                else {
-                    var isClassMethod = this.$(el).hasClass('classmethod');
+                var isFunction = this.$(el).hasClass('function');
+                var isClassMethod = this.$(el).hasClass('classmethod');
 
-                    if (name) {
-                        attrs.push(new klass.Method({
+                if (name) {
+                    if (isAttr) {
+                        methods.push({ name: name, isAttr: true });
+                    }
+                    else if (isFunction) {
+                        var id = this.$(el).children('dt').attr('id');
+                        methods.push(new Function({
+                            name: name,
+                            ...this.getMethodDetails(id)
+                        }))
+                    }
+                    else {
+                        var id = this.methodIdBase + '.' + name;
+                        methods.push(new Method({
                             name: name,
                             isClassMethod: isClassMethod,
-                            ...this._getMethodDetails(name)
+                            ...this.getMethodDetails(id)
                         }))
                     }
                 }
             }
-        });
+        })
+
+        return methods;
+    }
+
+    private parseAttr() {
+        var attrs = this.parseMethods(this.$('.class>dd>dl'));
 
         this.$('#properties table:last-of-type tbody tr').each((i, el) => {
-            attrs.push(new klass.Property({
+            attrs.push(new Property({
                 deprecated: !!this.$(el).find('td:nth-child(4)').text().match('deprecated'),
                 name: this.$(el).find('td:nth-child(1)').text(),
                 type: this.$(el).find('td:nth-child(2) a code').text(),
-                flags: this._parseFlags(this.$(el).find('td:nth-child(3)').text()),
+                flags: this.parseFlags(this.$(el).find('td:nth-child(3)').text()),
                 docStr: this.$(el).find('td:nth-child(4)').text()
             }))
         })
@@ -155,24 +162,24 @@ module.exports = class ClassParser {
         return attrs;
     }
 
-    _parseClass(){
-        var attrs = this._parseAttr();
+    private parseClass() {
+        var attrs = this.parseAttr();
         var bases = [], isAbstract;
         var name = this.$('#class-details>dl>dt').attr('id');
         this.$('#class-details>dl>dd>table:first-child>tbody>tr').each((i, el) => {
             var type = this.$(el).find('th').text();
-            if(type == 'Bases:'){
-                this.$(el).find('td>a>code').each((i, base)=>{
+            if (type == 'Bases:') {
+                this.$(el).find('td>a>code').each((i, base) => {
                     bases.push(this.$(base).text());
                 });
             }
-            else if(type == 'Abstract:'){
-                var isAbstract = this.$(el).find('td').text() != 'No';
+            else if (type == 'Abstract:') {
+                isAbstract = this.$(el).find('td').text() != 'No';
             }
         });
         var docStr = this.$('#class-details>dl>dd>p:first-of-type').text();
 
-        return new klass.Klass({
+        return new Klass({
             name: name,
             bases: bases,
             isAbstract: isAbstract,
@@ -181,7 +188,9 @@ module.exports = class ClassParser {
         })
     }
 
-    parse(){
-        return this._parseClass();
+    parse(text: string) {
+        this.$ = cheerio.load(text);
+        this.methodIdBase = this.$('.cuass>dt').attr('id');
+        return this.parseClass();
     }
 }
