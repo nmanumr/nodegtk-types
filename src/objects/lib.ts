@@ -14,7 +14,7 @@ export class Lib {
     }
 
     addFunctions(fns: Function[]) {
-        this.fns.concat(fns);
+        this.fns = this.fns.concat(fns);
     }
 
     addClass(klass: Klass) {
@@ -22,10 +22,10 @@ export class Lib {
     }
 
     addEnums(enums: Enum[]) {
-        this.enums.concat(enums);
+        this.enums = this.enums.concat(enums);
     }
 
-    addConsts(consts: Constant[]){
-        this.consts.concat(consts);
+    addConsts(consts: Constant[]) {
+        this.consts = this.consts.concat(consts);
     }
 }

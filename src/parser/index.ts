@@ -1,19 +1,56 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import * as cheerio from 'cheerio';
 import { Lib } from '../objects/lib';
 import { FunctionParser } from './functionParser';
 import { EnumParser } from './enumParser';
 import { ConstParser } from './constParser';
+import { ClassParser } from './classParser';
+import { Writer } from '../writer';
 
 export class Parser {
-    basePath: string;
-    $: CheerioStatic;
+    private basePath: string;
+    private $: CheerioStatic;
 
-    readFile(path): string {
+    private parsersDict = {
+        'functions': FunctionParser,
+        'constants': ConstParser,
+        'enums': EnumParser,
+        'class': ClassParser
+    }
+
+    private readFile(path): string {
+        console.log(`Parsing: ${path}`);
         return fs.readFileSync(path).toString();
     }
 
-    parseLib(name): Lib {
+    private parse(filepath, type) {
+        var text = this.readFile(filepath);
+        var parser = new this.parsersDict[type]();
+        return parser.parse(text);
+    }
+
+    private write(outPath, lib, filePath, type) {
+        var parsed = this.parse(filePath, type);
+        var writer = new Writer(path.join(outPath, lib, type + '.d.ts'));
+        for (var el of parsed) {
+            el.write(writer);
+        }
+    }
+
+    private parseClasses(outPath, lib, filePath){
+        var text = this.readFile(filePath);
+        var $ = cheerio.load(text);
+        $('.toctree-wrapper li a').each((_, el)=>{
+            var clsPath = path.join(this.basePath, $(el).attr('href'));
+            var parsed = this.parse(clsPath, 'class');
+        })
+    }
+
+    parseLib(name, outPath): Lib {
+        var dir = path.join(outPath, name);
+        !fs.existsSync(dir) && fs.mkdirSync(dir);
+
         this.basePath = `./pgi-docs/${name}`;
         var indexText = this.readFile(this.basePath + '/index.html');
         this.$ = cheerio.load(indexText);
@@ -24,31 +61,24 @@ export class Parser {
             var text = this.$(el).text();
             var filePath = `${this.basePath}/${this.$(el).attr('href')}`;
 
-            var fnParser = new FunctionParser();
-            var enumParser = new EnumParser();
-            var constsParser = new ConstParser();
-
             switch (text) {
                 case 'Functions':
-                    var fnText = this.readFile(filePath);
-                    lib.addFunctions(fnParser.parse(fnText));
+                    // this.write(outPath, name, filePath, 'functions');
                     break;
 
                 case 'Classes':
                 case 'Structures':
                 case 'Unions':
-                    console.log(filePath);
+                    this.parseClasses(outPath, name, filePath);
                     break;
 
                 case 'Flags':
                 case 'Enums':
-                    var fnText = this.readFile(filePath);
-                    lib.addEnums(enumParser.parse(fnText));
+                    // this.write(outPath, name, filePath, 'enums');
                     break;
 
                 case 'Constants':
-                    var fnText = this.readFile(filePath);
-                    lib.addConsts(constsParser.parse(fnText));
+                    // this.write(outPath, name, filePath, 'constants');
                     break;
             }
         })

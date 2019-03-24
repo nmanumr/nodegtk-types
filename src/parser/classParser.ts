@@ -6,29 +6,31 @@ export class ClassParser {
     $: CheerioStatic;
     methodIdBase: string;
 
-    constructor(text=''){
+    constructor(text = '') {
         this.$ = cheerio.load(text);
+    }
+
+    private getMethodArg(el) {
+        var type: any = this.$(el).text().match(/(?<=.* \().*(?=\) – )/);
+        type = type ? type[0] : '';
+        var isList = type.match(/^.* \(\[.*\]\) – /i);
+
+        return new MethodArg({
+            name: this.$(el).find('strong').text(),
+            type: type.replace('[', '').replace(']', '').replace(' or ', ' | ') + (isList ? '[]' : ''),
+            docStr: this.$(el).text().replace(/.* \(.*\) – /, '').replace(/\n/gm, ' ')
+        })
     }
 
     private getMethodArgs(argsEl) {
         var args = []
         if (this.$(argsEl).find('li').length) {
             this.$(argsEl).find('li').each((i, el) => {
-
-                args.push(new MethodArg({
-                    name: this.$(el).find('strong').text(),
-                    type: this.$(el).find('a:first-of-type code').text(),
-                    docStr: this.$(el).text().replace(/.* \(.*\) – /, '').replace(/\n/gm, ' ')
-                }))
+                args.push(this.getMethodArg(el))
             })
         }
         else if (this.$(argsEl).children('strong').length) {
-            var isList = !!this.$(argsEl).text().match(/^.* \(\[.*\]\) – /i);
-            args.push(new MethodArg({
-                name: this.$(argsEl).find('strong').text(),
-                type: this.$(argsEl).find('a:first-of-type code').text() + (isList ? '[]' : ''),
-                docStr: this.$(argsEl).text().replace(/.* \(.*\) – /, '').replace(/\n/gm, ' ')
-            }))
+            args.push(this.getMethodArg(argsEl));
         }
 
         return args;

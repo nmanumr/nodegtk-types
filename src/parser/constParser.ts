@@ -11,10 +11,10 @@ export class ConstParser {
         this.$('#details>dl').each((_, valueEL) => {
             var val = this.$(valueEL).find('dt>.property').text().replace('=', '').trim()
 
-            if(!val.match(/<\w+ .*>/)){
+            if(!val.match(/<\w+ .*>/) && !val.match(/\(|\)/)){
                 consts.push(new Constant({
-                    name: this.$(valueEL).find('dt>.descname').text(),
                     value: val,
+                    name: this.$(valueEL).find('dt>.descname').text(),
                     docStr: this.$(valueEL).find('dd').text().replace(/\n/g, ' ')
                 }));
             }
