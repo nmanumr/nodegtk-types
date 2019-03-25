@@ -24,7 +24,7 @@ export class Klass extends BaseObject {
         if(this.bases.length){
             str += 'extends '
             for(var base of this.bases){
-                str += `${base}, `;
+                str += `${getTsType(base)}, `;
             }
             str = str.slice(0, -2);
         }

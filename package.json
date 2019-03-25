@@ -13,10 +13,12 @@
     "@types/cheerio": "^0.22.11",
     "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.11",
-    "node-gtk": "^0.2.2"
+    "node-gtk": "^0.2.2",
+    "pretty-ms": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.3"
   }
 }

@@ -1,9 +1,28 @@
 import { Parser } from "./parser";
-// import { ClassParser } from "./parser/classParser";
-// import * as fs from 'fs';
+import { performance } from 'perf_hooks';
+import * as prettyMs from 'pretty-ms';
+
+var t1 = performance.now();
 
 var parser = new Parser();
-parser.parseLib('Gtk-3.0', '../typings');
-// var text = fs.readFileSync('./pgi-docs/GLib-2.0/classes/IOChannel.html').toString();
-// var x = new ClassParser();
-// x.parse(text);
+var libs = [
+    'GLib-2.0',
+    'GObject-2.0',
+    "Pango-1.0",
+    "xlib-2.0",
+    "Gio-2.0",
+    "GModule-2.0",
+    "GdkPixbuf-2.0",
+    "Atk-1.0",
+    "Gdk-3.0",
+    'GIRepository-2.0',
+    'Gtk-3.0'
+]
+
+for (var lib of libs) {
+    parser.parseLib(lib, '../typings/node-gtk/');
+}
+
+var t2 = performance.now();
+
+console.log(`Generated documentation in ${prettyMs(t2 - t1)}`);

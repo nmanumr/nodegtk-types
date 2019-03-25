@@ -5,7 +5,7 @@ export class Writer{
 
     constructor(path){
         console.log(`Writing: ${path}`);
-        this.file = fs.openSync(path, 'w');
+        this.file = fs.openSync(path, 'a');
     }
 
     appendText(text){

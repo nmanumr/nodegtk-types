@@ -1,31 +1,29 @@
-import { Function, Klass } from './class'
-import { Enum } from './enum';
-import { Constant } from './const';
+import { Writer } from "../writer";
 
 export class Lib {
     name: string;
-    fns: Function[] = [];
-    klasses: Klass[] = [];
-    enums: Enum[] = [];
-    consts: Constant[] = [];
+    exportables: Exportable[] = [];
 
     constructor(name) {
         this.name = name;
     }
 
-    addFunctions(fns: Function[]) {
-        this.fns = this.fns.concat(fns);
+    addExportable(exportable: Exportable) {
+        this.exportables.push(exportable);
     }
 
-    addClass(klass: Klass) {
-        this.klasses.push(klass);
+    addClass(klass: Exportable) {
+        this.exportables.push(klass);
     }
 
-    addEnums(enums: Enum[]) {
-        this.enums = this.enums.concat(enums);
+    writeIndex(writer: Writer){
+        for(var fn of this.exportables){
+            writer.appendText(`export { ${fn.name} } from './${fn.fileName.split('.')[0]}';`);
+        }
     }
+}
 
-    addConsts(consts: Constant[]) {
-        this.consts = this.consts.concat(consts);
-    }
+export class Exportable {
+    name: string;
+    fileName: string;
 }

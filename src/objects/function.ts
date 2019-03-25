@@ -51,6 +51,10 @@ export function getTsType(type: string) {
         types = types.map((val) => getTsType(val))
         return types.join(' | ');
     }
+    else if(type.split('.').length > 1){
+        var [lib, ...x] = type.split('.');
+        return `import('../${lib}').${x.join('.')}`;
+    }
     return type;
 }
 

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as rimraf from 'rimraf';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
 import { Lib } from '../objects/lib';
@@ -15,6 +16,7 @@ export class Parser {
 
     private parsersDict = {
         'functions': FunctionParser,
+        'callbacks': FunctionParser,
         'constants': ConstParser,
         'enums': EnumParser,
         'classes': ClassParser,
@@ -36,15 +38,18 @@ export class Parser {
         return parser.parse(text);
     }
 
-    private write(outPath, lib, filePath, type) {
+    private write(outPath, lib: Lib, filePath, type) {
         var parsed: any = this.parseFile(filePath, type);
-        var writer = new Writer(path.join(outPath, lib, type + '.d.ts'));
+        var writer = new Writer(path.join(outPath, lib.name, `${type}.d.ts`));
+
+
         for (var el of parsed) {
+            lib.addExportable({ name: el.name, fileName: `${type}.d.ts` });
             el.write(writer);
         }
     }
 
-    private parseClasses(outPath, lib, filePath, type) {
+    private parseClasses(outPath, lib: Lib, filePath, type) {
         var text = this.readFile(filePath);
         var $ = cheerio.load(text);
 
@@ -54,19 +59,22 @@ export class Parser {
             var name = parsed.name;
             name = name.split('.')[name.split('.').length - 1]
 
-            var writer = new Writer(path.join(outPath, lib, `${name}.d.ts`));
+            var writer = new Writer(path.join(outPath, lib.name, `${name}.d.ts`));
+            lib.addClass({ name: name, fileName: `${name}.d.ts` });
             parsed.write(writer);
         })
     }
 
     parseLib(name, outPath): Lib {
-        var dir = path.join(outPath, name);
+        var dir = path.join(outPath, name.split('-')[0]);
+        rimraf.sync(dir);
         !fs.existsSync(dir) && fs.mkdirSync(dir);
 
         this.basePath = `./pgi-docs/${name}`;
         var indexText = this.readFile(this.basePath + '/index.html');
         this.$ = cheerio.load(indexText);
 
+        name = name.split('-')[0];
         var lib = new Lib(name);
 
         this.$('#api a').each((_, el) => {
@@ -75,27 +83,33 @@ export class Parser {
 
             switch (text) {
                 case 'Functions':
-                    this.write(outPath, name, filePath, 'functions');
+                    this.write(outPath, lib, filePath, 'functions');
+                    break;
+
+                case 'Callbacks':
+                    this.write(outPath, lib, filePath, 'callbacks');
                     break;
 
                 case 'Classes':
                 case 'Structures':
                 case 'Unions':
                 case 'Interfaces':
-                    this.parseClasses(outPath, name, filePath, text.toLowerCase());
+                    this.parseClasses(outPath, lib, filePath, text.toLowerCase());
                     break;
 
                 case 'Flags':
                 case 'Enums':
-                    this.write(outPath, name, filePath, 'enums');
+                    this.write(outPath, lib, filePath, 'enums');
                     break;
 
                 case 'Constants':
-                    this.write(outPath, name, filePath, 'constants');
+                    this.write(outPath, lib, filePath, 'constants');
                     break;
             }
         })
 
+        var writer = new Writer(path.join(outPath, lib.name, `index.d.ts`));
+        lib.writeIndex(writer);
         return lib;
     }
 }
