@@ -1,0 +1,11 @@
+export { openDisplay } from './functions';
+export { Display } from './Display';
+export { Screen } from './Screen';
+export { Visual } from './Visual';
+export { XConfigureEvent } from './XConfigureEvent';
+export { XFontStruct } from './XFontStruct';
+export { XImage } from './XImage';
+export { XTrapezoid } from './XTrapezoid';
+export { XVisualInfo } from './XVisualInfo';
+export { XWindowAttributes } from './XWindowAttributes';
+export { XEvent } from './XEvent';

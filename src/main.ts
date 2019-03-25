@@ -20,9 +20,9 @@ var libs = [
 ]
 
 for (var lib of libs) {
-    parser.parseLib(lib, '../typings/node-gtk/');
+    parser.parseLib(lib, './@typings/node-gtk/');
 }
 
 var t2 = performance.now();
 
-console.log(`Generated documentation in ${prettyMs(t2 - t1)}`);
+console.log(`Generated declarations in ${prettyMs(t2 - t1)}`);
