@@ -20,7 +20,7 @@ var libs = [
 ]
 
 for (var lib of libs) {
-    parser.parseLib(lib, './@typings/node-gtk/');
+    parser.parseLib(lib, './@types/node-gtk/');
 }
 
 var t2 = performance.now();
