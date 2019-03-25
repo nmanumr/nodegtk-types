@@ -39,11 +39,12 @@ export function getTsType(type: string) {
     if (Array.isArray(type)){
         type =  type.join(' | ');
     }
+    type = type.replace(/\n/g, '');
     if (typeMap[type]) {
         return typeMap[type];
     }
-    else if (type.match(/\[\]$/) && typeMap[type.slice(0, -2)]) {
-        return typeMap[type.slice(0, -2)] + '[]'
+    else if (type.match(/\[|\]/) && typeMap[type.replace(/\[|\]/g, '')]) {
+        return typeMap[type.replace(/\[|\]/g, '')] + '[]'
     }
     else if (type.match(/ \| /)) {
         var types = type.split(' | ');

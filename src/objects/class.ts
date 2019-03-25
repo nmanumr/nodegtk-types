@@ -7,6 +7,7 @@ export class Klass extends BaseObject {
     bases: string[];
     isAbstract: boolean;
     attrs: Method[] | Property[];
+    type = 'class';
 
     constructor(prop) {
         super(prop);
@@ -15,6 +16,32 @@ export class Klass extends BaseObject {
         this.isAbstract = prop.isAbstract;
         this.attrs = prop.attrs;
     }
+
+    write(writer?: Writer){
+        var name = this.name.split('.')[this.name.split('.').length-1];
+        var str = `${this.writeDocLn()}export declare ${this.type} ${name} `;
+
+        if(this.bases.length){
+            str += 'extends '
+            for(var base of this.bases){
+                str += `${base}, `;
+            }
+            str = str.slice(0, -2);
+        }
+        str += '{\n';
+
+        for(var attr of this.attrs){
+            str += `${attr.write()}\n`;
+        }
+        str += '}\n';
+
+        if(writer) writer.appendText(str);
+        return str;
+    }
+}
+
+export class Interface extends Klass{
+    type = 'interface'
 }
 
 export abstract class ClassAttr extends BaseObject {
@@ -117,6 +144,17 @@ export class Property extends ClassAttr {
         this.type = prop.type;
         this.flags = prop.flags;
         this.isReadonly = prop.flags.reandonly;
+    }
+
+    write(writer?:Writer){
+        var str =  this.writeDocLn();
+        str += this.name;
+        if(this.type){
+            str += `: ${getTsType(this.type)}`;
+        }
+
+        if (writer) writer.appendText(str);
+        return str + ';';
     }
 }
 

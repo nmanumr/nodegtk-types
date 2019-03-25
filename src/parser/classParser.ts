@@ -1,10 +1,11 @@
 import * as cheerio from 'cheerio';
-import { MethodArg, Method, Property, Klass, Function } from '../objects/class';
+import { MethodArg, Method, Property, Klass, Function, ClassAttr, Interface } from '../objects/class';
 
 
 export class ClassParser {
     $: CheerioStatic;
     methodIdBase: string;
+    type = Klass;
 
     constructor(text = '') {
         this.$ = cheerio.load(text);
@@ -61,22 +62,11 @@ export class ClassParser {
                 returns.docStr = this.$(el).children('.field-body').text().trim().replace(/\n\n/g, '\n');
             }
             else if (text == 'Return type:') {
-                var listTypes = this.$(el).text().match(/\[.*\]/g) || [];
-                var isList = !!this.$(el).text().match(/\(.*: .*,.*\)/g);
+                var text  = this.$(el).find('.field-body').text();
+                text = text.replace(/\s*\w+:\s*/g, '').replace(/\(|\)/g, '');
+                var types = text.split(',').map((val)=>val.split(' or '));
 
-                this.$(el).find('.field-body a').each((i, _el) => {
-                    var type = this.$(_el).text();
-
-                    if (!isList) {
-                        if (listTypes.indexOf(`[${type}]`) > -1)
-                            returns.type.push(`${type}[]`);
-                        else
-                            returns.type.push(type);
-                    }
-                    else {
-                        returns.type.push([type]);
-                    }
-                });
+                returns.type = types;
             }
         })
 
@@ -124,7 +114,10 @@ export class ClassParser {
 
                 if (name) {
                     if (isAttr) {
-                        methods.push({ name: name, isAttr: true });
+                        methods.push(new Property({
+                            name: name,
+                            flags: {}
+                        }));
                     }
                     else if (isFunction) {
                         var id = this.$(el).children('dt').attr('id');
@@ -194,7 +187,7 @@ export class ClassParser {
 
         var docStr = this.$(`${detailId}>dl>dd>p:first-of-type`).text();
 
-        return new Klass({
+        return new this.type({
             name: name,
             bases: bases,
             isAbstract: isAbstract,
@@ -208,4 +201,8 @@ export class ClassParser {
         this.methodIdBase = this.$('.class>dt').attr('id');
         return this.parseClass();
     }
+}
+
+export class InterfaceParser extends ClassParser{
+    type = Interface;
 }
