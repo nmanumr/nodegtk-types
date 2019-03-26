@@ -1,3 +1,6 @@
+import * as Pango from '../Pango';
+export declare interface EngineShape extends Pango.Engine { }
+
 /**
   * The Pango.EngineShape class is implemented by engines that
 customize the rendering-system dependent part of the
@@ -8,10 +11,6 @@ and to a particular script. For instance, there is one
 Pango.EngineShape implementation to handle shaping Arabic
 for Fontconfig-based backends. 
   */
-export declare class EngineShape extends import('../Pango').Engine{
-/**
-  *   
-  */
-parentInstance: import('../Pango').Engine;
+export declare abstract class EngineShape {
 }
 

@@ -23,7 +23,7 @@ export declare function bidiTypeForUnichar(ch: string): import('../Pango').BidiT
   * @param analysis Pango.Analysis structure from Pango.itemize()
   * @param attrs an array to store character information in 
   */
-export declare function break(text: string, length: number, analysis: import('../Pango').Analysis, attrs: import('../Pango').LogAttr): void;
+// export declare function break(text: string, length: number, analysis: import('../Pango').Analysis, attrs: import('../Pango').LogAttr): void;
 /**
   * Do not use.  Does not do anything.
   * @param key Key to look up, in the form “SECTION/KEY”.
@@ -142,7 +142,7 @@ export declare function isZeroWidth(ch: string): boolean;
   * @param cachedIter Cached attribute iterator, or None
   * @returns a GLib.List of Pango.Item structures. The items should be freed using Pango.Item.free() probably in combination with g_list_foreach(), and the list itself using g_list_free(). 
   */
-export declare function itemize(context: import('../Pango').Context, text: string, startIndex: number, length: number, attrs: import('../Pango').AttrList, cachedIter: import('../Pango').AttrIterator | null): import('../[Pango').Item];
+export declare function itemize(context: import('../Pango').Context, text: string, startIndex: number, length: number, attrs: import('../Pango').AttrList, cachedIter: import('../Pango').AttrIterator | null): import('../Pango').Item[];
 /**
   * Like Pango.itemize(), but the base direction to use when computing bidirectional levels (see Pango.Context.set_base_dir ()), is specified explicitly rather than gotten from the Pango.Context.
   * @param context a structure holding information that affects the itemization process.
@@ -154,7 +154,7 @@ export declare function itemize(context: import('../Pango').Context, text: strin
   * @param cachedIter Cached attribute iterator, or None
   * @returns a GLib.List of Pango.Item structures.  The items should be freed using Pango.Item.free() probably in combination with g_list_foreach(), and the list itself using g_list_free(). 
   */
-export declare function itemizeWithBaseDir(context: import('../Pango').Context, baseDir: import('../Pango').Direction, text: string, startIndex: number, length: number, attrs: import('../Pango').AttrList, cachedIter: import('../Pango').AttrIterator | null): import('../[Pango').Item];
+export declare function itemizeWithBaseDir(context: import('../Pango').Context, baseDir: import('../Pango').Direction, text: string, startIndex: number, length: number, attrs: import('../Pango').AttrList, cachedIter: import('../Pango').AttrIterator | null): import('../Pango').Item[];
 /**
   * Take a RFC-3066 format language tag as a string and convert it to a Pango.Language pointer that can be efficiently copied (copy the pointer) and compared with other language tags (compare the pointer.)
   * @param language a string representing a language tag, or None
@@ -259,7 +259,7 @@ export declare function readLine(stream: Object | null): [number, import('../GLi
   * @param logicalItems a GLib.List of Pango.Item in logical order.
   * @returns a GLib.List of Pango.Item structures in visual order.(Please open a bug if you use this function. It is not a particularly convenient interface, and the code is duplicated elsewhere in Pango for that reason.) 
   */
-export declare function reorderItems(logicalItems: import('../Pango').Item): import('../[Pango').Item];
+export declare function reorderItems(logicalItems: import('../Pango').Item): import('../Pango').Item[];
 /**
   * Scans an integer. Leading white space is skipped.
   * @param pos in/out string position

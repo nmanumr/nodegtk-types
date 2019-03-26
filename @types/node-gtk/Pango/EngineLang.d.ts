@@ -1,3 +1,6 @@
+import * as Pango from '../Pango';
+export declare interface EngineLang extends Pango.Engine { }
+
 /**
   * The Pango.EngineLang class is implemented by engines that
 customize the rendering-system independent part of the
@@ -6,10 +9,6 @@ instance, a custom Pango.EngineLang could be provided for
 Thai to implement the dictionary-based word boundary
 lookups needed for that language. 
   */
-export declare class EngineLang extends import('../Pango').Engine{
-/**
-  *   
-  */
-parentInstance: import('../Pango').Engine;
+export declare abstract class EngineLang {
 }
 

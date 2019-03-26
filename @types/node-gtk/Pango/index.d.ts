@@ -1,7 +1,6 @@
 export { attrTypeGetName } from './functions';
 export { attrTypeRegister } from './functions';
 export { bidiTypeForUnichar } from './functions';
-export { break } from './functions';
 export { configKeyGet } from './functions';
 export { configKeyGetSystem } from './functions';
 export { defaultBreak } from './functions';
