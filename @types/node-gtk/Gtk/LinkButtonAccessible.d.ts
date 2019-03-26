@@ -1,8 +1,7 @@
-export declare class LinkButtonAccessible extends import('../Gtk').ButtonAccessible, import('../Atk').HyperlinkImpl{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ButtonAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface LinkButtonAccessible extends Gtk.ButtonAccessible, Atk.HyperlinkImpl { }
+
+export declare class LinkButtonAccessible {
 }
 

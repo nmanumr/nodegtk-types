@@ -1,8 +1,6 @@
-export declare class ScaleAccessible extends import('../Gtk').RangeAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').RangeAccessible;
+import * as Gtk from '../Gtk';
+export declare interface ScaleAccessible extends Gtk.RangeAccessible { }
+
+export declare class ScaleAccessible {
 }
 

@@ -1,8 +1,6 @@
-export declare class StackAccessible extends import('../Gtk').ContainerAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+export declare interface StackAccessible extends Gtk.ContainerAccessible { }
+
+export declare class StackAccessible {
 }
 

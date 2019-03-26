@@ -6,30 +6,14 @@ model-specific data in the three user_data
 members. 
   */
 export declare class TreeIter {
-/**
-  * Creates a dynamically allocated tree iterator as a copy of self.
-  * @returns a newly-allocated copy of self 
-  */
-copy(): import('../Gtk').TreeIter;
-/**
-  * Frees an iterator that has been allocated by Gtk.TreeIter.copy(). 
-  */
-free(): void;
-/**
-  * a unique stamp to catch invalid iterators 
-  */
-stamp: number;
-/**
-  * model-specific data 
-  */
-userData: Object;
-/**
-  * model-specific data 
-  */
-userData2: Object;
-/**
-  * model-specific data 
-  */
-userData3: Object;
+  /**
+    * Creates a dynamically allocated tree iterator as a copy of self.
+    * @returns a newly-allocated copy of self 
+    */
+  copy(): import('../Gtk').TreeIter;
+  /**
+    * Frees an iterator that has been allocated by Gtk.TreeIter.copy(). 
+    */
+  free(): void;
 }
 

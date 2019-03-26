@@ -1,10 +1,13 @@
+import * as Gtk from '../Gtk';
+export declare interface RadioButton extends Gtk.CheckButton { }
+
 /**
   * A single radio button performs the same basic function as a Gtk.CheckButton,
 as its position in the object hierarchy reflects. It is only when multiple
 radio buttons are grouped together that they become a different user
 interface component in their own right. 
   */
-export declare class RadioButton extends import('../Gtk').CheckButton{
+export declare class RadioButton {
 /**
   * Creates a new Gtk.RadioButton. To be of any practical value, a widget should then be packed into the radio button.
   * @param group an existing radio button group, or None if you are creating a new group.
@@ -49,7 +52,7 @@ static newWithMnemonicFromWidget(radioGroupMember: import('../Gtk').RadioButton 
   * Retrieves the group assigned to a radio button.
   * @returns a linked list containing all the radio buttons in the same group as self. The returned list is owned by the radio button and must not be modified or freed. 
   */
-getGroup(): import('../[Gtk').RadioButton];
+getGroup(): import('../Gtk').RadioButton[];
 /**
   * Joins a Gtk.RadioButton object to the group of another Gtk.RadioButton object
   * @param groupSource a radio button object whos group we are joining, or None to remove the radio button from its group 
@@ -64,9 +67,5 @@ setGroup(group: import('../Gtk').RadioButton | null): void;
   * The radio button whose group this widget belongs to. 
   */
 group: import('../Gtk').RadioButton;
-/**
-  *   
-  */
-checkButton: import('../Gtk').CheckButton;
 }
 

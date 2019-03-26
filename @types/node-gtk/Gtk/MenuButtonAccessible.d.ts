@@ -1,8 +1,6 @@
-export declare class MenuButtonAccessible extends import('../Gtk').ToggleButtonAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ToggleButtonAccessible;
+import * as Gtk from '../Gtk';
+export declare interface MenuButtonAccessible extends Gtk.ToggleButtonAccessible { }
+
+export declare class MenuButtonAccessible {
 }
 

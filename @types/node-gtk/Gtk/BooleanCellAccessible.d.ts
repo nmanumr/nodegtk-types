@@ -1,8 +1,7 @@
-export declare class BooleanCellAccessible extends import('../Gtk').RendererCellAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').RendererCellAccessible;
+import * as Gtk from '../Gtk';
+export declare interface BooleanCellAccessible extends Gtk.RendererCellAccessible { }
+
+export declare class BooleanCellAccessible {
+
 }
 

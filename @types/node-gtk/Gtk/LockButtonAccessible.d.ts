@@ -1,8 +1,6 @@
-export declare class LockButtonAccessible extends import('../Gtk').ButtonAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ButtonAccessible;
+import * as Gtk from '../Gtk';
+export declare interface LockButtonAccessible extends Gtk.ButtonAccessible { }
+
+export declare class LockButtonAccessible {
 }
 

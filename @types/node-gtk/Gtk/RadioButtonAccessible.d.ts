@@ -1,8 +1,6 @@
-export declare class RadioButtonAccessible extends import('../Gtk').ToggleButtonAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ToggleButtonAccessible;
+import * as Gtk from '../Gtk';
+export declare interface RadioButtonAccessible extends Gtk.ToggleButtonAccessible { }
+
+export declare class RadioButtonAccessible {
 }
 

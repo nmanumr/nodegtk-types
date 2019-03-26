@@ -1,8 +1,7 @@
-export declare class SwitchAccessible extends import('../Gtk').WidgetAccessible, import('../Atk').Action{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').WidgetAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface SwitchAccessible extends Gtk.WidgetAccessible, Atk.Action { }
+
+export declare class SwitchAccessible {
 }
 

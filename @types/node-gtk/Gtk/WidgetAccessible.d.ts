@@ -1,8 +1,7 @@
-export declare class WidgetAccessible extends import('../Gtk').Accessible, import('../Atk').Component{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').Accessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface WidgetAccessible extends Gtk.Accessible, Atk.Component { }
+
+export declare class WidgetAccessible {
 }
 

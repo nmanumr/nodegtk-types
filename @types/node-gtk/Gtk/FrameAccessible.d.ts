@@ -1,8 +1,6 @@
-export declare class FrameAccessible extends import('../Gtk').ContainerAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+export declare interface FrameAccessible extends Gtk.ContainerAccessible { }
+
+export declare class FrameAccessible {
 }
 

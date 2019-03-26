@@ -1,8 +1,7 @@
-export declare class TreeViewAccessible extends import('../Gtk').ContainerAccessible, import('../Atk').Selection, import('../Atk').Table, import('../Gtk').CellAccessibleParent{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface TreeViewAccessible extends Gtk.ContainerAccessible, Atk.Selection, Atk.Table, Gtk.CellAccessibleParent { }
+
+export declare class TreeViewAccessible {
 }
 

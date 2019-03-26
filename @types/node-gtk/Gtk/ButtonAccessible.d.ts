@@ -1,8 +1,8 @@
-export declare class ButtonAccessible extends import('../Gtk').ContainerAccessible, import('../Atk').Action, import('../Atk').Image{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface ButtonAccessible extends Gtk.ContainerAccessible, Atk.Action, Atk.Image { }
+
+export declare class ButtonAccessible {
+    
 }
 

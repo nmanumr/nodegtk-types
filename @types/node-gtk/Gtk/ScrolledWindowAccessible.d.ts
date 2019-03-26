@@ -1,8 +1,6 @@
-export declare class ScrolledWindowAccessible extends import('../Gtk').ContainerAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+export declare interface ScrolledWindowAccessible extends Gtk.ContainerAccessible { }
+
+export declare class ScrolledWindowAccessible {
 }
 

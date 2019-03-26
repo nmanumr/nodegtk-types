@@ -1,8 +1,8 @@
-export declare class ExpanderAccessible extends import('../Gtk').ContainerAccessible, import('../Atk').Action{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface ExpanderAccessible extends Gtk.ContainerAccessible, Atk.Action { }
+
+export declare class ExpanderAccessible {
+
 }
 

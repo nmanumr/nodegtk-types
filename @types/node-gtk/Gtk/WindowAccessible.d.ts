@@ -1,8 +1,7 @@
-export declare class WindowAccessible extends import('../Gtk').ContainerAccessible, import('../Atk').Window{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface WindowAccessible extends Gtk.ContainerAccessible, Atk.Window { }
+
+export declare class WindowAccessible {
 }
 

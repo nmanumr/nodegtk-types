@@ -1,8 +1,6 @@
-export declare class StatusbarAccessible extends import('../Gtk').ContainerAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+export declare interface StatusbarAccessible extends Gtk.ContainerAccessible { }
+
+export declare class StatusbarAccessible {
 }
 

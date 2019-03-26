@@ -11,7 +11,7 @@ export declare function accelGroupsActivate(object: import('../GObject').Object,
   * @param object a GObject.Object, usually a Gtk.Window
   * @returns a list of all accel groups which are attached to object 
   */
-export declare function accelGroupsFromObject(object: import('../GObject').Object): import('../[Gtk').AccelGroup];
+export declare function accelGroupsFromObject(object: import('../GObject').Object): import('../Gtk').AccelGroup[];
 /**
   * Gets the modifier mask.
   * @returns the default accelerator modifier mask 
@@ -264,11 +264,6 @@ export declare function drawInsertionCursor(widget: import('../Gtk').Widget, cr:
   * @returns True if any events are pending, False otherwise 
   */
 export declare function eventsPending(): boolean;
-/**
-  * Analogical to Gtk.true(), this function does nothing but always returns False.
-  * @returns False 
-  */
-export declare function false(): boolean;
 /**
   * Registers an error quark for Gtk.FileChooser if necessary.
   * @returns The error quark used for Gtk.FileChooser errors. 
@@ -739,7 +734,7 @@ export declare function paperSizeGetDefault(): string;
   * @param includeCustom whether to include custom paper sizes as defined in the page setup dialog
   * @returns a newly allocated list of newly allocated Gtk.PaperSize objects 
   */
-export declare function paperSizeGetPaperSizes(includeCustom: boolean): import('../[Gtk').PaperSize];
+export declare function paperSizeGetPaperSizes(includeCustom: boolean): import('../Gtk').PaperSize[];
 /**
   * Parses command line arguments, and initializes global attributes of GTK+, but does not actually open a connection to a display. (See Gdk.Display.open(), Gdk.get_display_arg_name())
   * @param argv a pointer to the array of command line arguments
@@ -767,7 +762,7 @@ export declare function printRunPageSetupDialog(parent: import('../Gtk').Window 
   * @param doneCb a function to call when the user saves the modified page setup
   * @param data user data to pass to done_cb 
   */
-export declare function printRunPageSetupDialogAsync(parent: import('../Gtk').Window | null, pageSetup: import('../Gtk').PageSetup | null, settings: import('../Gtk').PrintSettings, doneCb: import('../Gtk').PageSetupDoneFunc, data: Object | null): void;
+export declare function printRunPageSetupDialogAsync(parent: import('../Gtk').Window | null, pageSetup: import('../Gtk').PageSetup | null, settings: import('../Gtk').PrintSettings, doneCb: import('../Gtk').pageSetupDoneFunc, data: Object | null): void;
 /**
   * Sends an event to a widget, propagating the event to parent widgets if the event remains unhandled.
   * @param widget a Gtk.Widget
@@ -1231,7 +1226,7 @@ export declare function stockLookup(stockId: string): import('../Gtk').StockItem
   * @param func a Gtk.TranslateFunc
   * @param data data to pass to func 
   */
-export declare function stockSetTranslateFunc(domain: string, func: import('../Gtk').TranslateFunc, data: Object | null): void;
+export declare function stockSetTranslateFunc(domain: string, func: import('../Gtk').translateFunc, data: Object | null): void;
 /**
   * This function frees a target table as returned by Gtk.target_table_new_from_list()
   * @param targets a Gtk.TargetEntry array 
@@ -1242,7 +1237,7 @@ export declare function targetTableFree(targets: import('../Gtk').TargetEntry): 
   * @param list a Gtk.TargetList
   * @returns the new table. 
   */
-export declare function targetTableNewFromList(list: import('../Gtk').TargetList): import('../[Gtk').TargetEntry];
+export declare function targetTableNewFromList(list: import('../Gtk').TargetList): import('../Gtk').TargetEntry[];
 /**
   * Determines if any of the targets in targets can be used to provide a GdkPixbuf.Pixbuf.
   * @param targets an array of Gdk.Atoms
@@ -1302,7 +1297,7 @@ export declare function testFindWidget(widget: import('../Gtk').Widget, labelPat
   * Return the type ids that have been registered after calling Gtk.test_register_all_types().
   * @returns 0-terminated array of type ids 
   */
-export declare function testListAllTypes(): import('../[GObject').GType];
+export declare function testListAllTypes(): import('../GObject').GType[];
 /**
   * Force registration of all core Gtk+ and Gdk object types. This allowes to refer to any of those object types via GObject.type_from_name() after calling this function. 
   */
@@ -1386,8 +1381,3 @@ export declare function treeRowReferenceInserted(proxy: import('../GObject').Obj
   * @returns True if the Gtk.SelectionData had the proper target type to allow us to set a tree row 
   */
 export declare function treeSetRowDragData(selectionData: import('../Gtk').SelectionData, treeModel: import('../Gtk').TreeModel, path: import('../Gtk').TreePath): boolean;
-/**
-  * All this function does it to return True.
-  * @returns True 
-  */
-export declare function true(): boolean;

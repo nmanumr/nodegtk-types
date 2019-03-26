@@ -1,8 +1,7 @@
-export declare class TextViewAccessible extends import('../Gtk').ContainerAccessible, import('../Atk').EditableText, import('../Atk').StreamableContent, import('../Atk').Text{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface TextViewAccessible extends Gtk.ContainerAccessible, Atk.EditableText, Atk.StreamableContent, Atk.Text { }
+
+export declare class TextViewAccessible {
 }
 

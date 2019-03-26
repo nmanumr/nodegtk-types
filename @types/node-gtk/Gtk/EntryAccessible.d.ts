@@ -1,8 +1,8 @@
-export declare class EntryAccessible extends import('../Gtk').WidgetAccessible, import('../Atk').Action, import('../Atk').EditableText, import('../Atk').Text{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').WidgetAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface EntryAccessible extends Gtk.WidgetAccessible, Atk.Action, Atk.EditableText, Atk.Text { }
+
+export declare class EntryAccessible {
+
 }
 

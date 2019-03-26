@@ -1,5 +1,7 @@
-export declare class EntryIconAccessible extends import('../Atk').Object, import('../Atk').Action, import('../Atk').Component{
-;
+import * as Atk from '../Atk';
+export declare interface EntryIconAccessible extends Atk.Object, Atk.Action, Atk.Component { }
+
+export declare class EntryIconAccessible {
 ;
 }
 

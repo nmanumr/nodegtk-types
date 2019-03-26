@@ -1,8 +1,7 @@
-export declare class LabelAccessible extends import('../Gtk').WidgetAccessible, import('../Atk').Hypertext, import('../Atk').Text{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').WidgetAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface LabelAccessible extends Gtk.WidgetAccessible, Atk.Hypertext, Atk.Text { }
+
+export declare class LabelAccessible {
 }
 

@@ -1,8 +1,7 @@
-export declare class TextCellAccessible extends import('../Gtk').RendererCellAccessible, import('../Atk').Text{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').RendererCellAccessible;
+import * as Gtk from '../Gtk';
+import * as Atk from '../Atk';
+export declare interface TextCellAccessible extends Gtk.RendererCellAccessible, Atk.Text { }
+
+export declare class TextCellAccessible {
 }
 

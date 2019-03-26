@@ -1,8 +1,6 @@
-export declare class RadioMenuItemAccessible extends import('../Gtk').CheckMenuItemAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').CheckMenuItemAccessible;
+import * as Gtk from '../Gtk';
+export declare interface RadioMenuItemAccessible extends Gtk.CheckMenuItemAccessible { }
+
+export declare class RadioMenuItemAccessible {
 }
 

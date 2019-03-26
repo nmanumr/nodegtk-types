@@ -6,9 +6,9 @@ Gtk.TreeModelRowIter is created by calling the Python iter()
 function on a Gtk.TreeModel object: 
   */
 export declare class TreeModelRowIter {
-/**
-  * Returns the next Gtk.TreeModelRow 
-  */
-next(): void;
+  /**
+    * Returns the next Gtk.TreeModelRow 
+    */
+  next(): void;
 }
 

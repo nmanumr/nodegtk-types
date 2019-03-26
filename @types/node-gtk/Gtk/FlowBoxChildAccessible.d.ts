@@ -1,8 +1,7 @@
-export declare class FlowBoxChildAccessible extends import('../Gtk').ContainerAccessible{
-;
-/**
-  *   
-  */
-parent: import('../Gtk').ContainerAccessible;
+import * as Gtk from '../Gtk';
+export declare interface FlowBoxChildAccessible extends Gtk.ContainerAccessible { }
+
+export declare class FlowBoxChildAccessible {
+
 }
 

@@ -1,10 +1,13 @@
+import * as Gtk from '../Gtk';
+export declare interface AppChooserWidget extends Gtk.Box, Gtk.AppChooser { }
+
 /**
   * Gtk.AppChooserWidget is a widget for selecting applications.
 It is the main building block for Gtk.AppChooserDialog. Most
 applications only need to use the latter; but you can use
 this widget as part of a larger widget if you have special needs. 
   */
-export declare class AppChooserWidget extends import('../Gtk').Box, import('../Gtk').AppChooser{
+export declare class AppChooserWidget {
 /**
   * Creates a new Gtk.AppChooserWidget for applications that can handle content of the given type.
   * @param contentType the content type to show applications for
@@ -95,9 +98,5 @@ showOther: boolean;
   * Whether the widget should show recommended applications 
   */
 showRecommended: boolean;
-/**
-  *   
-  */
-parent: import('../Gtk').Box;
 }
 
