@@ -10,18 +10,10 @@ name from the enum value. See also Atk.TextAttribute.for_name()
 and Atk.TextAttribute.get_value() for more information. 
   */
 export declare class Attribute {
-/**
-  * Frees the memory used by an #AtkAttributeSet, including all its Atk.Attributes.
-  * @param attribSet The #AtkAttributeSet to free 
-  */
-static setFree(attribSet: Object): void;
-/**
-  * The attribute name. 
-  */
-name: string;
-/**
-  * the value of the attribute, represented as a string. 
-  */
-value: string;
+  /**
+    * Frees the memory used by an #AtkAttributeSet, including all its Atk.Attributes.
+    * @param attribSet The #AtkAttributeSet to free 
+    */
+  static setFree(attribSet: Object): void;
 }
 

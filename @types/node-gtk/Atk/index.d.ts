@@ -34,7 +34,6 @@ export { valueTypeGetName } from './functions';
 export { eventListener } from './callbacks';
 export { eventListenerInit } from './callbacks';
 export { focusHandler } from './callbacks';
-export { function } from './callbacks';
 export { keySnoopFunc } from './callbacks';
 export { propertyChangeHandler } from './callbacks';
 export { Action } from './Action';
