@@ -1,3 +1,6 @@
+import * as GObject from '../GObject';
+export declare interface ParamSpecOverride extends GObject.ParamSpec { }
+
 /**
   * This is a type of GObject.ParamSpec type that simply redirects operations to
 another paramspec.  All operations other than getting or
@@ -8,14 +11,6 @@ property. GObject.ParamSpecOverride is used in implementing
 GObject.ObjectClass.override_property(), and will not be directly useful
 unless you are implementing a new base type similar to GObject.Object. 
   */
-export declare class ParamSpecOverride extends import('../GObject').ParamSpec{
-/**
-  *   
-  */
-overridden: import('../GObject').ParamSpec;
-/**
-  *   
-  */
-parentInstance: import('../GObject').ParamSpec;
+export declare class ParamSpecOverride {
 }
 

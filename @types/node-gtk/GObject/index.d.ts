@@ -38,7 +38,6 @@ export { flagsRegisterStatic } from './functions';
 export { flagsToString } from './functions';
 export { gtypeGetType } from './functions';
 export { listProperties } from './functions';
-export { new } from './functions';
 export { paramSpecBoolean } from './functions';
 export { paramSpecBoxed } from './functions';
 export { paramSpecChar } from './functions';

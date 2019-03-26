@@ -3,17 +3,5 @@
 nickname. 
   */
 export declare class FlagsValue {
-/**
-  * the flags value 
-  */
-value: number;
-/**
-  * the name of the value 
-  */
-valueName: string;
-/**
-  * the nickname of the value 
-  */
-valueNick: string;
 }
 

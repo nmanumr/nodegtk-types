@@ -5,7 +5,7 @@
   * @param callback callback – a function
   * @param userData user_data – zero or more extra arguments that will be passed to callback 
   */
-export declare function addEmissionHook(type: import('../GObject').Object, name: string, callback: , userData: ): void;
+export declare function addEmissionHook(type: import('../GObject').Object, name: string, callback, userData): void;
 /**
   * Provide a copy of a boxed structure src_boxed which is of type boxed_type.
   * @param boxedType The type of src_boxed.
@@ -339,14 +339,14 @@ export declare function gtypeGetType(): import('../GObject').GType;
   * @param type a Python GObject instance or type that the signal is associated with
   * @returns a list of GObject.ParamSpec 
   */
-export declare function listProperties(type: import('../GObject').Object): import('../[GObject').ParamSpec];
+export declare function listProperties(type: import('../GObject').Object): import('../GObject').ParamSpec[];
 /**
   * The Gobject.new() function returns a new object of the specified type. type must specify a type that is a descendant of gobject.GObject. GObject properties can set via keyword arguments.
   * @param type a Python GObject type
   * @param kwargs kwargs – set of property-value pairs
   * @returns a new object of the specified type 
   */
-export declare function new(type: import('../GObject').Object, kwargs: ): void;
+// export declare function new(type: import('../GObject').Object, kwargs: ): void;
 /**
   * Creates a new GObject.ParamSpecBoolean instance specifying a GObject.TYPE_BOOLEAN property. In many cases, it may be more appropriate to use an enum with GObject.param_spec_enum(), both to improve code clarity by using explicitly named values, and to allow for more values to be added in future without breaking API.
   * @param name canonical name of the property specified
@@ -662,7 +662,7 @@ export declare function signalAccumulatorTrueHandled(ihint: import('../GObject')
   * @param hookData user data for hook_func.
   * @returns the hook id, for later use with GObject.signal_remove_emission_hook(). 
   */
-export declare function signalAddEmissionHook(signalId: number, detail: number, hookFunc: import('../GObject').SignalEmissionHook, hookData: Object | null): number;
+export declare function signalAddEmissionHook(signalId: number, detail: number, hookFunc: import('../GObject').signalEmissionHook, hookData: Object | null): number;
 /**
   * Calls the original class closure of a signal. This function should only be called from an overridden class closure; see GObject.signal_override_class_closure() and g_signal_override_class_handler().
   * @param instanceAndParams the argument list of the signal emission. The first element in the array is a GObject.Value for the instance the signal is being emitted on. The rest are any arguments to be passed to the signal.
@@ -801,7 +801,7 @@ export declare function signalListIds(itype: import('../GObject').GType): number
   * Returns a list of signal names for the given type
   * @returns A list of signal names 
   */
-export declare function signalListNames(type: import('../GObject').GType): list;
+export declare function signalListNames(type: import('../GObject').GType): any[];
 /**
   * Given the name of the signal and the type of object it connects to, gets the signal’s identifying integer. Emitting the signal by number is somewhat faster than using the name each time.
   * @param name the signal’s name.
@@ -824,7 +824,7 @@ export declare function signalName(signalId: number): string;
   * @param paramTypes the parameter types passed to the signal handler
   * @returns a unique integer signal ID 
   */
-export declare function signalNew(signalName: string, type: import('../GObject').Object, flags: import('../GObject').SignalFlags, returnType: type, paramTypes: type): number;
+export declare function signalNew(signalName: string, type: import('../GObject').Object, flags: import('../GObject').SignalFlags, returnType, paramTypes): number;
 /**
   * Overrides the class closure (i.e. the default handler) for the given signal for emissions on instances of instance_type. instance_type must be derived from the type to which the signal belongs.
   * @param signalId the signal id
@@ -925,7 +925,7 @@ export declare function typeCheckValueHolds(value: import('../GObject').Value, t
   * @param type the parent type
   * @returns Newly allocated and 0-terminated array of child types, free with GLib.free() 
   */
-export declare function typeChildren(type: import('../GObject').GType): import('../[GObject').GType];
+export declare function typeChildren(type: import('../GObject').GType): import('../GObject').GType[];
 export declare function typeClassAdjustPrivateOffset(gClass: Object | null, privateSizeOrOffset: number): void;
 /**
   * This function is essentially the same as GObject.TypeClass.ref(), except that the classes reference count isn’t incremented. As a consequence, this function may return None if the class of the type passed in does not currently exist (hasn’t been referenced before).
@@ -1053,13 +1053,13 @@ export declare function typeInterfacePeek(instanceClass: import('../GObject').Ty
   * @param interfaceType an interface type
   * @returns a newly-allocated zero-terminated array of GObject.GType containing the prerequisites of interface_type 
   */
-export declare function typeInterfacePrerequisites(interfaceType: import('../GObject').GType): import('../[GObject').GType];
+export declare function typeInterfacePrerequisites(interfaceType: import('../GObject').GType): import('../GObject').GType[];
 /**
   * Return a newly allocated and 0-terminated array of type IDs, listing the interface types that type conforms to.
   * @param type the type to list interface types for
   * @returns Newly allocated and 0-terminated array of interface types, free with GLib.free() 
   */
-export declare function typeInterfaces(type: import('../GObject').GType): import('../[GObject').GType];
+export declare function typeInterfaces(type: import('../GObject').GType): import('../GObject').GType[];
 /**
   * If is_a_type is a derivable type, check whether type is a descendant of is_a_type. If is_a_type is an interface, check whether type conforms to it.
   * @param type type to check anchestry for
@@ -1104,7 +1104,7 @@ export declare function typeQuery(type: import('../GObject').GType): import('../
   * The GObject.type_register() function registers the specified Python class as a GObject type. class_ must be a descendant of GObject.Object. The function generates a name for the new type.
   * @param class class – a Python class that is a descendant of GObject.Object 
   */
-export declare function typeRegister(class: ): void;
+export declare function typeRegister(klass: any): void;
 /**
   * Registers type_name as the name of a new dynamic type derived from parent_type.  The type system uses the information contained in the GObject.TypePlugin structure pointed to by plugin to manage the type and its instances (if not abstract).  The value of flags determines the nature (e.g. abstract or not) of the type.
   * @param parentType type from which this type will be derived

@@ -1,7 +1,7 @@
-export declare const GBoxed = None;
-export declare const GObjectWeakRef = None;
-export declare const GParamSpec = None;
-export declare const GPointer = None;
+export declare const GBoxed: null;
+export declare const GObjectWeakRef: null;
+export declare const GParamSpec: null;
+export declare const GPointer: null;
 export declare const G_MAXDOUBLE = 1.7976931348623157e+308;
 export declare const G_MAXFLOAT = 3.4028234663852886e+38;
 export declare const G_MAXINT = 2147483647;
@@ -98,5 +98,5 @@ export declare const VALUE_COLLECT_FORMAT_MAX_LENGTH = 8;
   * If passed to G_VALUE_COLLECT(), allocated data won’t be copied but used verbatim. This does not affect ref-counted types like objects.  
   */
 export declare const VALUE_NOCOPY_CONTENTS = 134217728;
-export declare const Warning = None;
-export declare const features = {'generic-c-marshaller': True};
+export declare const Warning: null;
+export declare const features: { 'generic-c-marshaller': true };

@@ -3,17 +3,5 @@
 nickname. 
   */
 export declare class EnumValue {
-/**
-  * the enum value 
-  */
-value: number;
-/**
-  * the name of the value 
-  */
-valueName: string;
-/**
-  * the nickname of the value 
-  */
-valueNick: string;
 }
 
