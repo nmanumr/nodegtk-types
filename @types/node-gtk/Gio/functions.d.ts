@@ -29,13 +29,13 @@ export declare function appInfoCreateFromCommandline(commandline: string, applic
   * Gets a list of all of the applications currently registered on this system.
   * @returns a newly allocated GLib.List of references to Gio.AppInfos. 
   */
-export declare function appInfoGetAll(): import('../[Gio').AppInfo];
+export declare function appInfoGetAll(): import('../Gio').AppInfo[];
 /**
   * Gets a list of all Gio.AppInfos for a given content type, including the recommended and fallback Gio.AppInfos. See Gio.AppInfo.get_recommended_for_type() and Gio.AppInfo.get_fallback_for_type().
   * @param contentType the content type to find a Gio.AppInfo for
   * @returns GLib.List of Gio.AppInfos for given content_type or None on error. 
   */
-export declare function appInfoGetAllForType(contentType: string): import('../[Gio').AppInfo];
+export declare function appInfoGetAllForType(contentType: string): import('../Gio').AppInfo[];
 /**
   * Gets the default Gio.AppInfo for a given content type.
   * @param contentType the content type to find a Gio.AppInfo for
@@ -54,13 +54,13 @@ export declare function appInfoGetDefaultForUriScheme(uriScheme: string): import
   * @param contentType the content type to find a Gio.AppInfo for
   * @returns GLib.List of Gio.AppInfos for given content_type or None on error. 
   */
-export declare function appInfoGetFallbackForType(contentType: string): import('../[Gio').AppInfo];
+export declare function appInfoGetFallbackForType(contentType: string): import('../Gio').AppInfo[];
 /**
   * Gets a list of recommended Gio.AppInfos for a given content type, i.e. those applications which claim to support the given content type exactly, and not by MIME type subclassing. Note that the first application of the list is the last used one, i.e. the last one for which Gio.AppInfo.set_as_last_used_for_type() has been called.
   * @param contentType the content type to find a Gio.AppInfo for
   * @returns GLib.List of Gio.AppInfos for given content_type or None on error. 
   */
-export declare function appInfoGetRecommendedForType(contentType: string): import('../[Gio').AppInfo];
+export declare function appInfoGetRecommendedForType(contentType: string): import('../Gio').AppInfo[];
 /**
   * Utility function that launches the default application registered to handle the specified uri. Synchronous I/O is done on the uri to detect the type of the file if required.
   * @param uri the uri to show
@@ -76,7 +76,7 @@ export declare function appInfoLaunchDefaultForUri(uri: string, context: import(
   * @param callback a #GASyncReadyCallback to call when the request is done
   * @param userData data to pass to callback 
   */
-export declare function appInfoLaunchDefaultForUriAsync(uri: string, context: import('../Gio').AppLaunchContext | null, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').AsyncReadyCallback | null, userData: Object | null): void;
+export declare function appInfoLaunchDefaultForUriAsync(uri: string, context: import('../Gio').AppLaunchContext | null, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
 /**
   * Finishes an asynchronous launch-default-for-uri operation.
   * @param result a Gio.AsyncResult
@@ -95,21 +95,21 @@ export declare function appInfoResetTypeAssociations(contentType: string): void;
   * @param parameters the parameters to use to construct the object
   * @param ioPriority the I/O priority of the operation
   * @param cancellable optional Gio.Cancellable object, None to ignore.
-  * @param callback a Gio.AsyncReadyCallback to call when the initialization is finished
+  * @param callback a Gio.asyncReadyCallback to call when the initialization is finished
   * @param userData the data to pass to callback function 
   */
-export declare function asyncInitableNewvAsync(objectType: import('../GObject').GType, nParameters: number, parameters: import('../GObject').Parameter, ioPriority: number, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').AsyncReadyCallback | null, userData: Object | null): void;
+export declare function asyncInitableNewvAsync(objectType: import('../GObject').GType, nParameters: number, parameters: import('../GObject').Parameter, ioPriority: number, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
 /**
   * Asynchronously connects to the message bus specified by bus_type.
   * @param busType a Gio.BusType
   * @param cancellable a Gio.Cancellable or None
-  * @param callback a Gio.AsyncReadyCallback to call when the request is satisfied
+  * @param callback a Gio.asyncReadyCallback to call when the request is satisfied
   * @param userData the data to pass to callback 
   */
-export declare function busGet(busType: import('../Gio').BusType, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').AsyncReadyCallback | null, userData: Object | null): void;
+export declare function busGet(busType: import('../Gio').BusType, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
 /**
   * Finishes an operation started with Gio.bus_get().
-  * @param res a Gio.AsyncResult obtained from the Gio.AsyncReadyCallback passed to Gio.bus_get()
+  * @param res a Gio.AsyncResult obtained from the Gio.asyncReadyCallback passed to Gio.bus_get()
   * @returns a Gio.DBusConnection or None if error is set. Free with GObject.Object.unref(). 
   */
 export declare function busGetFinish(res: import('../Gio').AsyncResult): import('../Gio').DBusConnection;
@@ -275,13 +275,13 @@ export declare function dbusAddressGetForBusSync(busType: import('../Gio').BusTy
   * Asynchronously connects to an endpoint specified by address and sets up the connection so it is in a state to run the client-side of the D-Bus authentication conversation. address must be in the D-Bus address format.
   * @param address A valid D-Bus address.
   * @param cancellable A Gio.Cancellable or None.
-  * @param callback A Gio.AsyncReadyCallback to call when the request is satisfied.
+  * @param callback A Gio.asyncReadyCallback to call when the request is satisfied.
   * @param userData Data to pass to callback. 
   */
-export declare function dbusAddressGetStream(address: string, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').AsyncReadyCallback | null, userData: Object | null): void;
+export declare function dbusAddressGetStream(address: string, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
 /**
   * Finishes an operation started with Gio.dbus_address_get_stream().
-  * @param res A Gio.AsyncResult obtained from the Gio.AsyncReadyCallback passed to Gio.dbus_address_get_stream().
+  * @param res A Gio.AsyncResult obtained from the Gio.asyncReadyCallback passed to Gio.dbus_address_get_stream().
   * @returns A Gio.IOStream or None if error is set.  out_guid:None or return location to store the GUID extracted from address, if any. 
   */
 export declare function dbusAddressGetStreamFinish(res: import('../Gio').AsyncResult): [import('../Gio').IOStream, string];
@@ -528,14 +528,14 @@ export declare function ioExtensionPointRegister(name: string): import('../Gio')
   * @param dirname pathname for a directory containing modules to load.
   * @returns a list of Gio.IOModules loaded from the directory, All the modules are loaded into memory, if you want to unload them (enabling on-demand loading) you must call GObject.TypeModule.unuse() on all the modules. Free the list with g_list_free(). 
   */
-export declare function ioModulesLoadAllInDirectory(dirname: string): import('../[Gio').IOModule];
+export declare function ioModulesLoadAllInDirectory(dirname: string): import('../Gio').IOModule[];
 /**
   * Loads all the modules in the specified directory.
   * @param dirname pathname for a directory containing modules to load.
   * @param scope a scope to use when scanning the modules.
   * @returns a list of Gio.IOModules loaded from the directory, All the modules are loaded into memory, if you want to unload them (enabling on-demand loading) you must call GObject.TypeModule.unuse() on all the modules. Free the list with g_list_free(). 
   */
-export declare function ioModulesLoadAllInDirectoryWithScope(dirname: string, scope: import('../Gio').IOModuleScope): import('../[Gio').IOModule];
+export declare function ioModulesLoadAllInDirectoryWithScope(dirname: string, scope: import('../Gio').IOModuleScope): import('../Gio').IOModule[];
 /**
   * Scans all the modules in the specified directory, ensuring that any extension point implemented by a module is registered.
   * @param dirname pathname for a directory containing modules to scan. 
@@ -558,7 +558,7 @@ export declare function ioSchedulerCancelAllJobs(): void;
   * @param ioPriority the I/O priority of the request.
   * @param cancellable optional Gio.Cancellable object, None to ignore. 
   */
-export declare function ioSchedulerPushJob(jobFunc: import('../Gio').IOSchedulerJobFunc, userData: Object | null, ioPriority: number, cancellable: import('../Gio').Cancellable | null): void;
+export declare function ioSchedulerPushJob(jobFunc: import('../Gio').ioSchedulerJobFunc, userData: Object | null, ioPriority: number, cancellable: import('../Gio').Cancellable | null): void;
 /**
   * Creates a keyfile-backed Gio.SettingsBackend.
   * @param filename the filename of the keyfile
@@ -700,11 +700,11 @@ export declare function settingsSchemaSourceGetDefault(): import('../Gio').Setti
 /**
   * Reports an error in an idle function. Similar to g_simple_async_report_error_in_idle(), but takes a GLib.Error rather than building a new one.
   * @param object a GObject.Object, or None
-  * @param callback a Gio.AsyncReadyCallback.
+  * @param callback a Gio.asyncReadyCallback.
   * @param userData user data passed to callback.
   * @param error the GLib.Error to report 
   */
-export declare function simpleAsyncReportGerrorInIdle(object: import('../GObject').Object | null, callback: import('../Gio').AsyncReadyCallback | null, userData: Object | null, error: import('../GLib').Error): void;
+export declare function simpleAsyncReportGerrorInIdle(object: import('../GObject').Object | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null, error: import('../GLib').Error): void;
 /**
   * Gets the default Gio.TlsBackend for the system.
   * @returns a Gio.TlsBackend 
@@ -859,7 +859,7 @@ export declare function unixMountPointsChangedSince(time: number): boolean;
   * Gets a GLib.List of Gio.UnixMountPoint containing the unix mount points. If time_read is set, it will be filled with the mount timestamp, allowing for checking if the mounts have changed with Gio.unix_mount_points_changed_since().
   * @returns a GLib.List of the UNIX mountpoints.  time_read:guint64 to contain a timestamp. 
   */
-export declare function unixMountPointsGet(): [import('../[Gio').UnixMountPoint], number];
+export declare function unixMountPointsGet(): [import('../Gio').UnixMountPoint[], number];
 /**
   * Checks if the unix mounts have changed since a given unix time.
   * @param time guint64 to contain a timestamp.
@@ -870,4 +870,4 @@ export declare function unixMountsChangedSince(time: number): boolean;
   * Gets a GLib.List of Gio.UnixMountEntry containing the unix mounts. If time_read is set, it will be filled with the mount timestamp, allowing for checking if the mounts have changed with Gio.unix_mounts_changed_since().
   * @returns a GLib.List of the UNIX mounts.  time_read:guint64 to contain a timestamp, or None 
   */
-export declare function unixMountsGet(): [import('../[Gio').UnixMountEntry], number];
+export declare function unixMountsGet(): [import('../Gio').UnixMountEntry[], number];

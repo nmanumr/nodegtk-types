@@ -30,7 +30,7 @@ export declare class Pixbuf {
     * Asynchronously parses an image file far enough to determine its format and size.
     * @param filename The name of the file to identify
     * @param cancellable optional Gio.Cancellable object, None to ignore
-    * @param callback a Gio.AsyncReadyCallback to call when the file info is available
+    * @param callback a Gio.asyncReadyCallback to call when the file info is available
     * @param userData the data to pass to the callback function 
     */
   static getFileInfoAsync(filename: string, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
@@ -137,7 +137,7 @@ export declare class Pixbuf {
     * Creates a new pixbuf by asynchronously loading an image from an input stream.
     * @param stream a Gio.InputStream from which to load the pixbuf
     * @param cancellable optional Gio.Cancellable object, None to ignore
-    * @param callback a Gio.AsyncReadyCallback to call when the pixbuf is loaded
+    * @param callback a Gio.asyncReadyCallback to call when the pixbuf is loaded
     * @param userData the data to pass to the callback function 
     */
   static newFromStreamAsync(stream: import('../Gio').InputStream, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
@@ -158,7 +158,7 @@ export declare class Pixbuf {
     * @param height the height the image should have or -1 to not constrain the height
     * @param preserveAspectRatio True to preserve the image’s aspect ratio
     * @param cancellable optional Gio.Cancellable object, None to ignore
-    * @param callback a Gio.AsyncReadyCallback to call when the pixbuf is loaded
+    * @param callback a Gio.asyncReadyCallback to call when the pixbuf is loaded
     * @param userData the data to pass to the callback function 
     */
   static newFromStreamAtScaleAsync(stream: import('../Gio').InputStream, width: number, height: number, preserveAspectRatio: boolean, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;
@@ -403,7 +403,7 @@ export declare class Pixbuf {
     * @param optionKeys name of options to set, None-terminated
     * @param optionValues values for named options
     * @param cancellable optional Gio.Cancellable object, None to ignore
-    * @param callback a Gio.AsyncReadyCallback to call when the pixbuf is saved
+    * @param callback a Gio.asyncReadyCallback to call when the pixbuf is saved
     * @param userData the data to pass to the callback function 
     */
   saveToStreamvAsync(stream: import('../Gio').OutputStream, type: string, optionKeys: string, optionValues: string, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;

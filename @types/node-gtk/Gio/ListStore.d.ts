@@ -1,8 +1,12 @@
+import * as GObject from '../GObject';
+import * as Gio from '../Gio';
+export declare interface ListStore extends GObject.Object, Gio.ListModel { }
+
 /**
   * Gio.ListStore is a simple implementation of Gio.ListModel that stores all
 items in memory. 
   */
-export declare class ListStore extends import('../GObject').Object, import('../Gio').ListModel{
+export declare class ListStore {
 /**
   * Creates a new Gio.ListStore with items of type item_type. item_type must be a subclass of GObject.Object.
   * @param itemType the GObject.GType of items in the list
@@ -27,7 +31,7 @@ insert(position: number, item: import('../GObject').Object): void;
   * @param userData user data for compare_func
   * @returns the position at which item was inserted 
   */
-insertSorted(item: import('../GObject').Object, compareFunc: import('../GLib').CompareDataFunc, userData: Object | null): number;
+insertSorted(item: import('../GObject').Object, compareFunc: import('../GLib').compareDataFunc, userData: Object | null): number;
 /**
   * Removes the item from self that is at position. position must be smaller than the current length of the list.
   * @param position the position of the item that is to be removed 
@@ -42,7 +46,7 @@ removeAll(): void;
   * @param compareFunc pairwise comparison function for sorting
   * @param userData user data for compare_func 
   */
-sort(compareFunc: import('../GLib').CompareDataFunc, userData: Object | null): void;
+sort(compareFunc: import('../GLib').compareDataFunc, userData: Object | null): void;
 /**
   * Changes self by removing n_removals items and adding n_additions items to it. additions must contain n_additions items of type Gio.ListStore :item-type.  None is not permitted.
   * @param position the position at which to make the change
@@ -54,6 +58,5 @@ splice(position: number, nRemovals: number, additions: import('../GObject').Obje
   *   
   */
 itemType: import('../GObject').GType;
-;
 }
 

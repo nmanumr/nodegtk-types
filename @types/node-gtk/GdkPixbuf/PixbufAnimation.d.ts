@@ -28,7 +28,7 @@ export declare class PixbufAnimation {
     * Creates a new animation by asynchronously loading an image from an input stream.
     * @param stream a Gio.InputStream from which to load the animation
     * @param cancellable optional Gio.Cancellable object, None to ignore
-    * @param callback a Gio.AsyncReadyCallback to call when the pixbuf is loaded
+    * @param callback a Gio.asyncReadyCallback to call when the pixbuf is loaded
     * @param userData the data to pass to the callback function 
     */
   static newFromStreamAsync(stream: import('../Gio').InputStream, cancellable: import('../Gio').Cancellable | null, callback: import('../Gio').asyncReadyCallback | null, userData: Object | null): void;

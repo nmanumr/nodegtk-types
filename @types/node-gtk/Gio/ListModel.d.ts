@@ -1,3 +1,5 @@
+import * as GObject from '../GObject';
+
 /**
   * Gio.ListModel is an interface that represents a mutable list of
 GObject.Objects. Its main intention is as a model for various widgets in
@@ -5,7 +7,7 @@ user interfaces, such as list views, but it can also be used as a
 convenient method of returning lists of data, with support for
 updates. 
   */
-export declare interface ListModel extends import('../GObject').GInterface{
+export declare interface ListModel extends GObject.GInterface {
 /**
   * Get the item at position. If position is greater than the number of items in self, None is returned.
   * @param position the position of the item to fetch

@@ -5,13 +5,5 @@ and the operation will store the read data starting in the
 first buffer, switching to the next as needed. 
   */
 export declare class InputVector {
-/**
-  * Pointer to a buffer where data will be written. 
-  */
-buffer: Object;
-/**
-  * the available size in buffer. 
-  */
-size: number;
 }
 
