@@ -3,37 +3,5 @@
 in a generic way. 
   */
 export declare class IOFuncs {
-/**
-  *   
-  */
-ioClose: Object;
-/**
-  *   
-  */
-ioCreateWatch: Object;
-/**
-  *   
-  */
-ioFree: Object;
-/**
-  *   
-  */
-ioGetFlags: Object;
-/**
-  *   
-  */
-ioRead: Object;
-/**
-  *   
-  */
-ioSeek: Object;
-/**
-  *   
-  */
-ioSetFlags: Object;
-/**
-  *   
-  */
-ioWrite: Object;
 }
 

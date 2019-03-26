@@ -8,25 +8,5 @@ from a callback, GLib.MarkupParseContext.parse() will report that error
 back to its caller. 
   */
 export declare class MarkupParser {
-/**
-  *   
-  */
-endElement: Object;
-/**
-  *   
-  */
-error: Object;
-/**
-  *   
-  */
-passthrough: Object;
-/**
-  *   
-  */
-startElement: Object;
-/**
-  *   
-  */
-text: Object;
 }
 

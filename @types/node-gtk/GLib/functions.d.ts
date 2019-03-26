@@ -121,7 +121,7 @@ export declare function assertionMessageError(domain: string, file: string, line
   * Specifies a function to be called at normal program termination.
   * @param func the function to call on normal program termination. 
   */
-export declare function atexit(func: import('../GLib').VoidFunc): void;
+export declare function atexit(func: import('../GLib').voidFunc): void;
 /**
   * Atomically adds val to the value of atomic.
   * @param atomic a pointer to a int or int
@@ -277,7 +277,7 @@ export declare function atomicRcBoxRelease(memBlock: Object): void;
   * @param memBlock a pointer to reference counted data
   * @param clearFunc a function to call when clearing the data 
   */
-export declare function atomicRcBoxReleaseFull(memBlock: Object, clearFunc: import('../GLib').DestroyNotify): void;
+export declare function atomicRcBoxReleaseFull(memBlock: Object, clearFunc: import('../GLib').destroyNotify): void;
 /**
   * Atomically compares the current value of arc with val.
   * @param arc the address of an atomic reference count variable
@@ -458,7 +458,7 @@ export declare function checksumTypeGetLength(checksumType: import('../GLib').Ch
   * @param function function – function to call
   * @param data data – data to pass to function 
   */
-export declare function childWatchAdd(priority: , pid: , function: , data: ): void;
+export declare function childWatchAdd(priority, pid, fn, data): void;
 /**
   * Creates a new child_watch source.
   * @param pid process to watch. On POSIX the positive pid of a child process. On Windows a handle for a process (which doesn’t have to be a child).
@@ -546,7 +546,7 @@ export declare function convertWithFallback(str: Int8Array, toCodeset: string, f
   * @param func the function to call for each data element.
   * @param userData user data to pass to the function. 
   */
-export declare function datalistForeach(datalist: import('../GLib').Data, func: import('../GLib').DataForeachFunc, userData: Object | null): void;
+export declare function datalistForeach(datalist: import('../GLib').Data, func: import('../GLib').dataForeachFunc, userData: Object | null): void;
 /**
   * Gets a data element, using its string identifier. This is slower than GLib.datalist_id_get_data() because it compares strings.
   * @param datalist a datalist.
@@ -590,7 +590,7 @@ export declare function datasetDestroy(datasetLocation: Object): void;
   * @param func the function to call for each data element.
   * @param userData user data to pass to the function. 
   */
-export declare function datasetForeach(datasetLocation: Object, func: import('../GLib').DataForeachFunc, userData: Object | null): void;
+export declare function datasetForeach(datasetLocation: Object, func: import('../GLib').dataForeachFunc, userData: Object | null): void;
 /**
   * Gets the data element corresponding to a #GQuark.
   * @param datasetLocation the location identifying the dataset.
@@ -1038,19 +1038,19 @@ export declare function getenv(variable: string): string;
   * @param key a key to insert
   * @returns True if the key did not exist yet 
   */
-export declare function hashTableAdd(hashTable: {object: object}, key: Object | null): boolean;
+export declare function hashTableAdd(hashTable: { object: object }, key: Object | null): boolean;
 /**
   * Checks if key is in hash_table.
   * @param hashTable a GLib.HashTable
   * @param key a key to check
   * @returns True if key is in hash_table, False otherwise. 
   */
-export declare function hashTableContains(hashTable: {object: object}, key: Object | null): boolean;
+export declare function hashTableContains(hashTable: { object: object }, key: Object | null): boolean;
 /**
   * Destroys all keys and values in the GLib.HashTable and decrements its reference count by 1. If keys and/or values are dynamically allocated, you should either free them first or create the GLib.HashTable with destroy notifiers using g_hash_table_new_full(). In the latter case the destroy functions you supplied will be called on all keys and values during the destruction phase.
   * @param hashTable a GLib.HashTable 
   */
-export declare function hashTableDestroy(hashTable: {object: object}): void;
+export declare function hashTableDestroy(hashTable: { object: object }): void;
 /**
   * Inserts a new key and value into a GLib.HashTable.
   * @param hashTable a GLib.HashTable
@@ -1058,33 +1058,33 @@ export declare function hashTableDestroy(hashTable: {object: object}): void;
   * @param value the value to associate with the key
   * @returns True if the key did not exist yet 
   */
-export declare function hashTableInsert(hashTable: {object: object}, key: Object | null, value: Object | null): boolean;
+export declare function hashTableInsert(hashTable: { object: object }, key: Object | null, value: Object | null): boolean;
 /**
   * Looks up a key in a GLib.HashTable. Note that this function cannot distinguish between a key that is not present and one which is present and has the value None. If you need this distinction, use GLib.HashTable.lookup_extended().
   * @param hashTable a GLib.HashTable
   * @param key the key to look up
   * @returns the associated value, or None if the key is not found 
   */
-export declare function hashTableLookup(hashTable: {object: object}, key: Object | null): Object | null;
+export declare function hashTableLookup(hashTable: { object: object }, key: Object | null): Object | null;
 /**
   * Looks up a key in the GLib.HashTable, returning the original key and the associated value and a bool which is True if the key was found. This is useful if you need to free the memory allocated for the original key, for example before calling GLib.HashTable.remove().
   * @param hashTable a GLib.HashTable
   * @param lookupKey the key to look up
   * @returns True if the key was found in the GLib.HashTable   orig_key:return location for the original key value:return location for the value associated with the key 
   */
-export declare function hashTableLookupExtended(hashTable: {object: object}, lookupKey: Object | null): [boolean, Object, Object];
+export declare function hashTableLookupExtended(hashTable: { object: object }, lookupKey: Object | null): [boolean, Object, Object];
 /**
   * Removes a key and its associated value from a GLib.HashTable.
   * @param hashTable a GLib.HashTable
   * @param key the key to remove
   * @returns True if the key was found and removed from the GLib.HashTable 
   */
-export declare function hashTableRemove(hashTable: {object: object}, key: Object | null): boolean;
+export declare function hashTableRemove(hashTable: { object: object }, key: Object | null): boolean;
 /**
   * Removes all keys and their associated values from a GLib.HashTable.
   * @param hashTable a GLib.HashTable 
   */
-export declare function hashTableRemoveAll(hashTable: {object: object}): void;
+export declare function hashTableRemoveAll(hashTable: { object: object }): void;
 /**
   * Inserts a new key and value into a GLib.HashTable similar to GLib.HashTable.insert(). The difference is that if the key already exists in the GLib.HashTable, it gets replaced by the new key. If you supplied a value_destroy_func when creating the GLib.HashTable, the old value is freed using that function. If you supplied a key_destroy_func when creating the GLib.HashTable, the old key is freed using that function.
   * @param hashTable a GLib.HashTable
@@ -1092,37 +1092,37 @@ export declare function hashTableRemoveAll(hashTable: {object: object}): void;
   * @param value the value to associate with the key
   * @returns True if the key did not exist yet 
   */
-export declare function hashTableReplace(hashTable: {object: object}, key: Object | null, value: Object | null): boolean;
+export declare function hashTableReplace(hashTable: { object: object }, key: Object | null, value: Object | null): boolean;
 /**
   * Returns the number of elements contained in the GLib.HashTable.
   * @param hashTable a GLib.HashTable
   * @returns the number of key/value pairs in the GLib.HashTable. 
   */
-export declare function hashTableSize(hashTable: {object: object}): number;
+export declare function hashTableSize(hashTable: { object: object }): number;
 /**
   * Removes a key and its associated value from a GLib.HashTable without calling the key and value destroy functions.
   * @param hashTable a GLib.HashTable
   * @param key the key to remove
   * @returns True if the key was found and removed from the GLib.HashTable 
   */
-export declare function hashTableSteal(hashTable: {object: object}, key: Object | null): boolean;
+export declare function hashTableSteal(hashTable: { object: object }, key: Object | null): boolean;
 /**
   * Removes all keys and their associated values from a GLib.HashTable without calling the key and value destroy functions.
   * @param hashTable a GLib.HashTable 
   */
-export declare function hashTableStealAll(hashTable: {object: object}): void;
+export declare function hashTableStealAll(hashTable: { object: object }): void;
 /**
   * Looks up a key in the GLib.HashTable, stealing the original key and the associated value and returning True if the key was found. If the key was not found, False is returned.
   * @param hashTable a GLib.HashTable
   * @param lookupKey the key to look up
   * @returns True if the key was found in the GLib.HashTable   stolen_key:return location for the original key stolen_value:return location for the value associated with the key 
   */
-export declare function hashTableStealExtended(hashTable: {object: object}, lookupKey: Object | null): [boolean, Object, Object];
+export declare function hashTableStealExtended(hashTable: { object: object }, lookupKey: Object | null): [boolean, Object, Object];
 /**
   * Atomically decrements the reference count of hash_table by one. If the reference count drops to 0, all keys and values will be destroyed, and all memory allocated by the hash table is released. This function is MT-safe and may be called from any thread.
   * @param hashTable a valid GLib.HashTable 
   */
-export declare function hashTableUnref(hashTable: {object: object}): void;
+export declare function hashTableUnref(hashTable: { object: object }): void;
 /**
   * Destroys a GLib.Hook, given its ID.
   * @param hookList a GLib.HookList
@@ -1198,7 +1198,7 @@ export declare function hostnameToUnicode(hostname: string): string;
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function idleAdd(priority: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function idleAdd(priority: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * Removes the idle function with the given data.
   * @param data the data for the idle source’s callback.
@@ -1257,7 +1257,7 @@ export declare function internString(string: string | null): string;
   * @param userData user_data – user data to pass to func
   * @returns the event source id 
   */
-export declare function ioAddWatch(channel: , priority: , condition: , func: , userData: ): event_source_id;
+export declare function ioAddWatch(channel, priority, condition, func, userData): any;
 /**
   * Converts an errno error number to a GLib.IOChannelError.
   * @param en an errno error number, e.g. EINVAL
@@ -1326,7 +1326,7 @@ export declare function logSetFatalMask(logDomain: string, fatalMask: import('..
   * @param userData data passed to the log handler
   * @returns the id of the new handler 
   */
-export declare function logSetHandler(logDomain: string | null, logLevels: import('../GLib').LogLevelFlags, logFunc: import('../GLib').LogFunc, userData: Object | null): number;
+export declare function logSetHandler(logDomain: string | null, logLevels: import('../GLib').LogLevelFlags, logFunc: import('../GLib').logFunc, userData: Object | null): number;
 /**
   * Set a writer function which will be called to format and write out each log message. Each program should set a writer function, or the default writer (GLib.log_writer_default()) will be used.
   * @param userData user data to pass to func 
@@ -1686,7 +1686,7 @@ export declare function rcBoxRelease(memBlock: Object): void;
   * @param memBlock a pointer to reference counted data
   * @param clearFunc a function to call when clearing the data 
   */
-export declare function rcBoxReleaseFull(memBlock: Object, clearFunc: import('../GLib').DestroyNotify): void;
+export declare function rcBoxReleaseFull(memBlock: Object, clearFunc: import('../GLib').destroyNotify): void;
 /**
   * Reallocates the memory pointed to by mem, so that it now has space for n_bytes bytes of memory. It returns the new address of the memory, which may have been moved. mem may be None, in which case it’s considered to have zero-length. n_bytes may be 0, in which case None will be returned and mem will be freed unless it is None.
   * @param mem the memory to reallocate
@@ -1988,7 +1988,7 @@ export declare function spacedPrimesClosest(num: number): number;
   * @param standardError pipe stderr if True
   * @returns pid:child process ID stdin:file descriptor to child’s stdin, or None stdout:file descriptor to read child’s stdout, or None stderr:file descriptor to read child’s stderr, or None 
   */
-export declare function spawnAsync(argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').SpawnChildSetupFunc | null, userData: Object | null, standardInput: boolean, standardOutput: boolean, standardError: boolean): [number, number | null, number | null, number | null];
+export declare function spawnAsync(argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').spawnChildSetupFunc | null, userData: Object | null, standardInput: boolean, standardOutput: boolean, standardError: boolean): [number, number | null, number | null, number | null];
 /**
   * Identical to GLib.spawn_async_with_pipes() but instead of creating pipes for the stdin/stdout/stderr, you can pass existing file descriptors into this function through the stdin_fd, stdout_fd and stderr_fd parameters. The following flags also have their behaviour slightly tweaked as a result:
   * @param workingDirectory child’s current working directory, or None to inherit parent’s, in the GLib file name encoding
@@ -2002,7 +2002,7 @@ export declare function spawnAsync(argv: string, envp: string | null, flags: imp
   * @param stderrFd file descriptor to use for child’s stderr, or -1
   * @returns True on success, False if an error was set   child_pid:return location for child process ID, or None 
   */
-export declare function spawnAsyncWithFds(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').SpawnChildSetupFunc | null, userData: Object | null, stdinFd: number, stdoutFd: number, stderrFd: number): [boolean, number];
+export declare function spawnAsyncWithFds(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').spawnChildSetupFunc | null, userData: Object | null, stdinFd: number, stdoutFd: number, stderrFd: number): [boolean, number];
 /**
   * Executes a child program asynchronously (your program will not block waiting for the child to exit). The child program is specified by the only argument that must be provided, argv. argv should be a None-terminated array of strings, to be passed as the argument vector for the child. The first string in argv is of course the name of the program to execute. By default, the name of the program must be a full path. If flags contains the GLib.SpawnFlags.SEARCH_PATH flag, the PATH environment variable is used to search for the executable. If flags contains the GLib.SpawnFlags.SEARCH_PATH_FROM_ENVP flag, the PATH variable from envp is used to search for the executable. If both the GLib.SpawnFlags.SEARCH_PATH and GLib.SpawnFlags.SEARCH_PATH_FROM_ENVP flags are set, the PATH variable from envp takes precedence over the environment variable.
   * @param workingDirectory child’s current working directory, or None to inherit parent’s, in the GLib file name encoding
@@ -2013,7 +2013,7 @@ export declare function spawnAsyncWithFds(workingDirectory: string | null, argv:
   * @param userData user data for child_setup
   * @returns True on success, False if an error was set   child_pid:return location for child process ID, or None standard_input:return location for file descriptor to write to child’s stdin, or None standard_output:  return location for file descriptor to read child’s stdout, or None standard_error:return location for file descriptor to read child’s stderr, or None 
   */
-export declare function spawnAsyncWithPipes(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').SpawnChildSetupFunc | null, userData: Object | null): [boolean, number, number, number, number];
+export declare function spawnAsyncWithPipes(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').spawnChildSetupFunc | null, userData: Object | null): [boolean, number, number, number, number];
 /**
   * Set error if exit_status indicates the child exited abnormally (e.g. with a nonzero exit code, or via a fatal signal).
   * @param exitStatus An exit code as returned from GLib.spawn_sync()
@@ -2049,7 +2049,7 @@ export declare function spawnExitErrorQuark(): number;
   * @param userData user data for child_setup
   * @returns True on success, False if an error was set   standard_output:  return location for child output, or None standard_error:return location for child error messages, or None exit_status:return location for child exit status, as returned by waitpid(), or None 
   */
-export declare function spawnSync(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').SpawnChildSetupFunc | null, userData: Object | null): [boolean, Int8Array, Int8Array, number];
+export declare function spawnSync(workingDirectory: string | null, argv: string, envp: string | null, flags: import('../GLib').SpawnFlags, childSetup: import('../GLib').spawnChildSetupFunc | null, userData: Object | null): [boolean, Int8Array, Int8Array, number];
 /**
   * Copies a nul-terminated string into the dest buffer, include the trailing nul, and return a pointer to the trailing nul byte. This is useful for concatenating multiple strings together without having to repeatedly scan for the end.
   * @param dest destination buffer.
@@ -2328,20 +2328,20 @@ export declare function strvLength(strArray: string): number;
   * @param testData Test data argument for the test function.
   * @param testFunc The test function to invoke for this test. 
   */
-export declare function testAddDataFunc(testpath: string, testData: Object | null, testFunc: import('../GLib').TestDataFunc): void;
+export declare function testAddDataFunc(testpath: string, testData: Object | null, testFunc: import('../GLib').testDataFunc): void;
 /**
   * Create a new test case, as with GLib.test_add_data_func(), but freeing test_data after the test run is complete.
   * @param testpath /-separated test case path name for the test.
   * @param testData Test data argument for the test function.
   * @param testFunc The test function to invoke for this test. 
   */
-export declare function testAddDataFuncFull(testpath: string, testData: Object | null, testFunc: import('../GLib').TestDataFunc): void;
+export declare function testAddDataFuncFull(testpath: string, testData: Object | null, testFunc: import('../GLib').testDataFunc): void;
 /**
   * Create a new test case, similar to g_test_create_case(). However the test is assumed to use no fixture, and test suites are automatically created on the fly and added to the root fixture, based on the slash-separated portions of testpath.
   * @param testpath /-separated test case path name for the test.
   * @param testFunc The test function to invoke for this test. 
   */
-export declare function testAddFunc(testpath: string, testFunc: import('../GLib').TestFunc): void;
+export declare function testAddFunc(testpath: string, testFunc: import('../GLib').testFunc): void;
 export declare function testAssertExpectedMessagesInternal(domain: string, file: string, line: number, func: string): void;
 /**
   * This function adds a message to test reports that associates a bug URI with a test case. Bug URIs are constructed from a base URI set with GLib.test_bug_base() and bug_uri_snippet.
@@ -2386,7 +2386,7 @@ export declare function testLogTypeName(logType: import('../GLib').TestLogType):
   * @param destroyFunc Destroy callback for teardown phase.
   * @param destroyData Destroy callback data. 
   */
-export declare function testQueueDestroy(destroyFunc: import('../GLib').DestroyNotify, destroyData: Object | null): void;
+export declare function testQueueDestroy(destroyFunc: import('../GLib').destroyNotify, destroyData: Object | null): void;
 /**
   * Enqueue a pointer to be released with GLib.free() during the next teardown phase. This is equivalent to calling GLib.test_queue_destroy() with a destroy callback of GLib.free().
   * @param gfreePointer the pointer to be stored. 
@@ -2539,7 +2539,7 @@ export declare function timeValFromIso8601(isoDate: string): [boolean, import('.
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function timeoutAdd(priority: number, interval: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function timeoutAdd(priority: number, interval: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * Sets a function to be called at regular intervals, with priority. The function is called repeatedly until it returns False, at which point the timeout is automatically destroyed and the function will not be called again.
   * @param priority the priority of the timeout source. Typically this will be in the range between GLib.PRIORITY_DEFAULT and GLib.PRIORITY_HIGH.
@@ -2548,7 +2548,7 @@ export declare function timeoutAdd(priority: number, interval: number, function:
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function timeoutAddSeconds(priority: number, interval: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function timeoutAddSeconds(priority: number, interval: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * Creates a new timeout source.
   * @param interval the timeout interval in milliseconds.
@@ -2875,7 +2875,7 @@ export declare function unixErrorQuark(): number;
   * @param userData data to pass to function
   * @returns the ID (greater than 0) of the event source 
   */
-export declare function unixFdAddFull(priority: number, fd: number, condition: import('../GLib').IOCondition, function: import('../GLib').UnixFDSourceFunc, userData: Object | null): number;
+export declare function unixFdAddFull(priority: number, fd: number, condition: import('../GLib').IOCondition, fn: import('../GLib').unixFdSourceFunc, userData: Object | null): number;
 /**
   * Creates a GLib.Source to watch for a particular IO condition on a file descriptor.
   * @param fd a file descriptor
@@ -2905,7 +2905,7 @@ export declare function unixSetFdNonblocking(fd: number, nonblock: boolean): boo
   * @param userData Data for handler
   * @returns An ID (greater than 0) for the event source 
   */
-export declare function unixSignalAdd(priority: number, signum: number, handler: import('../GLib').SourceFunc, userData: Object | null): number;
+export declare function unixSignalAdd(priority: number, signum: number, handler: import('../GLib').sourceFunc, userData: Object | null): number;
 export declare function unixSignalAddFull(): void;
 /**
   * Create a GLib.Source that will be dispatched upon delivery of the UNIX signal signum.  In GLib versions before 2.36, only SIGHUP, SIGINT, SIGTERM can be monitored.  In GLib 2.36, SIGUSR1 and SIGUSR2 were added. In GLib 2.54, SIGWINCH was added.

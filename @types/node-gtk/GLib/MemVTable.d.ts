@@ -4,29 +4,5 @@ be used for all allocations in the same program; a call to GLib.mem_set_vtable()
 if it exists, should be prior to any use of GLib. 
   */
 export declare class MemVTable {
-/**
-  *   
-  */
-calloc: Object;
-/**
-  *   
-  */
-free: Object;
-/**
-  *   
-  */
-malloc: Object;
-/**
-  *   
-  */
-realloc: Object;
-/**
-  *   
-  */
-tryMalloc: Object;
-/**
-  *   
-  */
-tryRealloc: Object;
 }
 
