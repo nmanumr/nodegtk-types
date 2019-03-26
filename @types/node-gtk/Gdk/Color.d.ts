@@ -42,21 +42,5 @@ toFloats(): void;
   * @returns a newly-allocated text string 
   */
 toString(): string;
-/**
-  * The blue component of the color 
-  */
-blue: number;
-/**
-  * The green component of the color 
-  */
-green: number;
-/**
-  * For allocated colors, the pixel value used to draw this color on the screen. Not used anymore. 
-  */
-pixel: number;
-/**
-  * The red component of the color. This is a value between 0 and 65535, with 65535 indicating full intensity 
-  */
-red: number;
 }
 

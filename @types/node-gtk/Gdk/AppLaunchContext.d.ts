@@ -1,10 +1,13 @@
+import * as Gio from '../Gio';
+export declare interface AppLaunchContext extends Gio.AppLaunchContext { }
+
 /**
   * Gdk.AppLaunchContext is an implementation of Gio.AppLaunchContext that
 handles launching an application in a graphical context. It provides
 startup notification and allows to launch applications on a specific
 screen or workspace. 
   */
-export declare class AppLaunchContext extends import('../Gio').AppLaunchContext{
+export declare class AppLaunchContext {
 /**
   * Creates a new Gdk.AppLaunchContext.
   * @returns a new Gdk.AppLaunchContext 
@@ -44,6 +47,5 @@ setTimestamp(timestamp: number): void;
   * Display 
   */
 display: import('../Gdk').Display;
-;
 }
 

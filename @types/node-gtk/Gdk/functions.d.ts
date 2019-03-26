@@ -236,7 +236,7 @@ export declare function eventGet(): import('../Gdk').Event | null;
   * @param func the function to call to handle events from GDK.
   * @param data user data to pass to the function. 
   */
-export declare function eventHandlerSet(func: import('../Gdk').EventFunc, data: Object | null): void;
+export declare function eventHandlerSet(func: import('../Gdk').eventFunc, data: Object | null): void;
 /**
   * If there is an event waiting in the event queue of some open display, returns a copy of it. See Gdk.Display.peek_event().
   * @returns a copy of the first Gdk.Event on some event queue, or None if no events are in any queues. The returned Gdk.Event should be freed with Gdk.Event.free(). 
@@ -380,7 +380,7 @@ export declare function keyvalToUpper(keyval: number): number;
   * Lists the available visuals for the default screen. (See Gdk.Screen.list_visuals()) A visual describes a hardware image data format. For example, a visual might support 24-bit color, or 8-bit color, and might expect pixels to be in a certain format.
   * @returns a list of visuals; the list must be freed, but not its contents 
   */
-export declare function listVisuals(): import('../[Gdk').Visual];
+export declare function listVisuals(): import('../Gdk').Visual[];
 /**
   * Indicates to the GUI environment that the application has finished loading. If the applications opens windows, this function is normally called after opening the application’s initial set of windows. 
   */
@@ -502,7 +502,7 @@ export declare function queryDepths(): number[];
   * This function returns the available visual types for the default screen. It’s equivalent to listing the visuals (Gdk.list_visuals()) and then looking at the type field in each visual, removing duplicates.
   * @returns return location for the available visual types 
   */
-export declare function queryVisualTypes(): import('../[Gdk').VisualType];
+export declare function queryVisualTypes(): import('../Gdk').VisualType[];
 /**
   * intersect(src2: Gdk.Rectangle) -> (bool, dest: Gdk.Rectangle) 
   */
@@ -641,7 +641,7 @@ export declare function textPropertyToUtf8ListForDisplay(display: import('../Gdk
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function threadsAddIdle(priority: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function threadsAddIdle(priority: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * Sets a function to be called at regular intervals holding the GDK lock, with the given priority.  The function is called repeatedly until it returns False, at which point the timeout is automatically destroyed and the function will not be called again.  The notify function is called when the timeout is destroyed.  The first call to the function will be at the end of the first interval.
   * @param priority the priority of the timeout source. Typically this will be in the range between GLib.PRIORITY_DEFAULT_IDLE and GLib.PRIORITY_HIGH_IDLE.
@@ -650,7 +650,7 @@ export declare function threadsAddIdle(priority: number, function: import('../GL
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function threadsAddTimeout(priority: number, interval: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function threadsAddTimeout(priority: number, interval: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * A variant of Gdk.threads_add_timeout() with second-granularity. See GLib.timeout_add_seconds() for a discussion of why it is a good idea to use this function if you don’t need finer granularity.
   * @param priority the priority of the timeout source. Typically this will be in the range between GLib.PRIORITY_DEFAULT_IDLE and GLib.PRIORITY_HIGH_IDLE.
@@ -659,7 +659,7 @@ export declare function threadsAddTimeout(priority: number, interval: number, fu
   * @param data data to pass to function
   * @returns the ID (greater than 0) of the event source. 
   */
-export declare function threadsAddTimeoutSeconds(priority: number, interval: number, function: import('../GLib').SourceFunc, data: Object | null): number;
+export declare function threadsAddTimeoutSeconds(priority: number, interval: number, fn: import('../GLib').sourceFunc, data: Object | null): number;
 /**
   * This function marks the beginning of a critical section in which GDK and GTK+ functions can be called safely and without causing race conditions. Only one thread at a time can be in such a critial section. 
   */
