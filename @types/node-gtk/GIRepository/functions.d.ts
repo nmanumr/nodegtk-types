@@ -124,7 +124,7 @@ export declare function callableInfoGetReturnType(info: import('../GIRepository'
   * @param isMethod TODO
   * @param throws TODO 
   */
-export declare function callableInfoInvoke(info: import('../GIRepository').BaseInfo, function: Object | null, inArgs: import('../GIRepository').Argument, outArgs: import('../GIRepository').Argument, returnValue: import('../GIRepository').Argument, isMethod: boolean, throws: boolean): boolean;
+export declare function callableInfoInvoke(info: import('../GIRepository').BaseInfo, fn: Object | null, inArgs: import('../GIRepository').Argument, outArgs: import('../GIRepository').Argument, returnValue: import('../GIRepository').Argument, isMethod: boolean, throws: boolean): boolean;
 /**
   * Determines if the callable info is a method. For #GIVFuncInfo s, #GICallbackInfo s, and #GISignalInfo s, this is always true. Otherwise, this looks at the GIRepository.FunctionInfoFlags.IS_METHOD flag on the #GIFunctionInfo.
   * @param info a #GICallableInfo
