@@ -1,5 +1,12 @@
 import * as Gtk from '../Gtk';
-export declare interface CellAreaBox extends Gtk.CellArea, Gtk.Orientable { }
+
+export declare interface CellAreaBox extends Gtk.CellArea, Gtk.Orientable {
+  packEnd(renderer: import('../Gtk').CellRenderer, expand: boolean, align: boolean, fixed: boolean): void;
+  packEnd(cell: import('../Gtk').CellRenderer, expand: boolean): void;
+
+  packStart(renderer: import('../Gtk').CellRenderer, expand: boolean, align: boolean, fixed: boolean): void;
+  packStart(cell: import('../Gtk').CellRenderer, expand: boolean): void;
+}
 
 /**
   * The Gtk.CellAreaBox renders cell renderers into a row or a column

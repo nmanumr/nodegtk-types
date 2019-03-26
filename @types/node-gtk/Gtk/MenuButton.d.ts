@@ -1,5 +1,12 @@
 import * as Gtk from '../Gtk';
-export declare interface MenuButton extends Gtk.ToggleButton { }
+
+export declare interface MenuButton extends Gtk.ToggleButton {
+  getDirection(): import('../Gtk').ArrowType;
+  getDirection(): import('../Gtk').TextDirection;
+
+  setDirection(direction: import('../Gtk').ArrowType): void;
+  setDirection(direction: import('../Gtk').TextDirection): void;
+}
 
 /**
   * The Gtk.MenuButton widget is used to display a popup when clicked on.

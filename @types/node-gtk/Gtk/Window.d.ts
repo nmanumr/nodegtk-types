@@ -1,5 +1,9 @@
 import * as Gtk from '../Gtk';
-export declare interface Window extends Gtk.Bin { }
+
+export declare interface Window extends Gtk.Bin {
+  mnemonicActivate(keyval: number, modifier: import('../Gdk').ModifierType): boolean;
+  mnemonicActivate(groupCycling: boolean): boolean;
+}
 
 /**
   * A Gtk.Window is a toplevel window which can contain other widgets.

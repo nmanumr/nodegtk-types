@@ -1,5 +1,12 @@
 import * as Gio from '../Gio';
-export declare interface MemoryOutputStream extends Gio.OutputStream, Gio.PollableOutputStream, Gio.Seekable { }
+
+export declare interface MemoryOutputStream extends Gio.OutputStream, Gio.PollableOutputStream, Gio.Seekable {
+  getData(): any | null;
+  getData(key: string): any | null;
+
+  stealData(): any | null;
+  stealData(key: string): any | null;
+}
 
 /**
   * Gio.MemoryOutputStream is a class for using arbitrary

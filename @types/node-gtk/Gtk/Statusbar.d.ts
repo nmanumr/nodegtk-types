@@ -1,5 +1,9 @@
 import * as Gtk from '../Gtk';
-export declare interface Statusbar extends Gtk.Box { }
+
+export declare interface Statusbar extends Gtk.Box {
+  remove(contextId: number, messageId: number): void;
+  remove(widget: Gtk.Widget): void;
+}
 
 /**
   * A Gtk.Statusbar is usually placed along the bottom of an application’s

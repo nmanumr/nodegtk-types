@@ -1,5 +1,9 @@
 import * as Gtk from '../Gtk';
-export declare interface TextView extends Gtk.Container, Gtk.Scrollable { }
+
+export declare interface TextView extends Gtk.Container, Gtk.Scrollable {
+  getWindow(win: Gtk.TextWindowType): import('../Gdk').Window;
+  getWindow(): import('../Gdk').Window;
+}
 
 /**
   * You may wish to begin by reading the

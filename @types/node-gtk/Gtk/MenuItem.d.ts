@@ -1,5 +1,9 @@
 import * as Gtk from '../Gtk';
-export declare interface MenuItem extends Gtk.Bin, Gtk.Actionable, Gtk.Activatable { }
+
+export declare interface MenuItem extends Gtk.Bin, Gtk.Actionable, Gtk.Activatable {
+  activate(): void;
+  activate(): boolean;
+}
 
 /**
   * The Gtk.MenuItem widget and the derived widgets are the only valid

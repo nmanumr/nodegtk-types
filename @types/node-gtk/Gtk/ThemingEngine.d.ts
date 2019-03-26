@@ -1,5 +1,9 @@
 import * as GObject from '../GObject';
-export declare interface ThemingEngine extends GObject.Object { }
+
+export declare interface ThemingEngine extends GObject.Object {
+  getProperty(property: string, state: import('../Gtk').StateFlags): import('../GObject').Value;
+  getProperty(): void
+}
 
 /**
   * Gtk.ThemingEngine was the object used for rendering themed content

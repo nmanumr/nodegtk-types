@@ -1,5 +1,6 @@
 import * as Gtk from '../Gtk';
-export declare interface AppChooserWidget extends Gtk.Box, Gtk.AppChooser { }
+
+export declare interface AppChooserWidget extends Gtk.Box, Gtk.AppChooser {}
 
 /**
   * Gtk.AppChooserWidget is a widget for selecting applications.
@@ -81,7 +82,7 @@ defaultText: string;
 /**
   * Whether the widget should show all applications 
   */
-showAll: boolean;
+// showAll: boolean;
 /**
   * Whether the widget should show the default application 
   */

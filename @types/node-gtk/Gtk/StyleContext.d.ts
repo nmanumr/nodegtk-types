@@ -1,5 +1,10 @@
 import * as GObject from '../GObject';
-export declare interface StyleContext extends GObject.Object { }
+import { StateFlags } from '.';
+
+export declare interface StyleContext extends GObject.Object {
+  getProperty(property: string, state: StateFlags): GObject.Value
+  getProperty(): void
+}
 
 /**
   * Gtk.StyleContext is an object that stores styling information affecting

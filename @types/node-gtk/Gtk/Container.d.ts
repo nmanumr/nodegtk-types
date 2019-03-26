@@ -1,5 +1,10 @@
 import * as Gtk from '../Gtk';
-export declare interface Container extends Gtk.Widget { }
+
+// tslint:disable-next-line
+export declare interface Container extends Gtk.Widget {
+  childNotify(child: import('../Gtk').Widget, childProperty: string): void;
+  childNotify(childProperty: string): void;
+}
 
 /**
   * A GTK+ user interface is constructed by nesting widgets inside widgets.
@@ -59,6 +64,7 @@ export declare abstract class Container {
     * @param child the child widget
     * @param childProperty the name of a child property installed on the class of self 
     */
+
   childNotify(child: import('../Gtk').Widget, childProperty: string): void;
   /**
     * Emits a Gtk.Widget ::child-notify signal for the ‘child property [child-properties]’ specified by pspec on the child.

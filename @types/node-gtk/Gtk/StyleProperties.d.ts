@@ -1,6 +1,13 @@
 import * as GObject from '../GObject';
 import * as Gtk from '../Gtk';
-export declare interface StyleProperties extends GObject.Object, Gtk.StyleProvider { }
+
+export declare interface StyleProperties extends GObject.Object, Gtk.StyleProvider {
+  getProperty(property: string, state: Gtk.StateFlags): GObject.Value
+  getProperty(): void
+
+  setProperty(property: string, state: Gtk.StateFlags, value: GObject.Value): void;
+  setProperty(): void;
+}
 
 /**
   * Gtk.StyleProperties provides the storage for style information

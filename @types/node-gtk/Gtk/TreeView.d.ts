@@ -1,4 +1,5 @@
 import * as Gtk from '../Gtk';
+
 export declare interface TreeView extends Gtk.Container, Gtk.Scrollable { }
 
 /**

@@ -1,5 +1,8 @@
 import * as Gtk from '../Gtk';
-export declare interface SeparatorToolItem extends Gtk.ToolItem { }
+
+export declare interface SeparatorToolItem extends Gtk.ToolItem {
+
+}
 
 /**
   * A Gtk.SeparatorToolItem is a Gtk.ToolItem that separates groups of other
@@ -25,6 +28,6 @@ export declare class SeparatorToolItem {
   /**
     * Whether the separator is drawn, or just blank 
     */
-  draw: boolean;
+  // draw: boolean;
 }
 

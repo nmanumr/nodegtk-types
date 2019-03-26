@@ -1,5 +1,10 @@
 import * as Gtk from '../Gtk';
-export declare interface ComboBoxText extends Gtk.ComboBox { }
+import { Widget } from './Widget';
+
+export declare interface ComboBoxText extends Gtk.ComboBox {
+  remove(position: number): void;
+  remove(widget: Widget): void;
+}
 
 /**
   * A Gtk.ComboBoxText is a simple variant of Gtk.ComboBox that hides

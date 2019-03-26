@@ -1,5 +1,12 @@
 import * as Gtk from '../Gtk';
-export declare interface ToolPalette extends Gtk.Container, Gtk.Orientable, Gtk.Scrollable { }
+
+export declare interface ToolPalette extends Gtk.Container, Gtk.Orientable, Gtk.Scrollable {
+  getStyle(): import('../Gtk').Style;
+  getStyle(): import('../Gtk').ToolbarStyle;
+
+  setStyle(style: import('../Gtk').Style): void;
+  setStyle(style: import('../Gtk').ToolbarStyle): void;
+}
 
 /**
   * A Gtk.ToolPalette allows you to add Gtk.ToolItems to a palette-like

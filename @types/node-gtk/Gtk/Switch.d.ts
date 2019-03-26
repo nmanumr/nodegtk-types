@@ -1,5 +1,12 @@
 import * as Gtk from '../Gtk';
-export declare interface Switch extends Gtk.Widget, Gtk.Actionable, Gtk.Activatable { }
+
+export declare interface Switch extends Gtk.Widget, Gtk.Actionable, Gtk.Activatable {
+  getState(): boolean;
+  getState(): Gtk.StateType;
+
+  setState(state: boolean): void;
+  setState(state: Gtk.StateType): void;
+}
 
 /**
   * Gtk.Switch is a widget that has two states: on or off. The user can control

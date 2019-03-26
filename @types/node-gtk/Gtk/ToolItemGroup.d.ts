@@ -1,5 +1,9 @@
 import * as Gtk from '../Gtk';
-export declare interface ToolItemGroup extends Gtk.Container, Gtk.ToolShell { }
+
+export declare interface ToolItemGroup extends Gtk.Container, Gtk.ToolShell {
+  getStyle(): import('../Gtk').Style;
+  getStyle(): import('../Gtk').ToolbarStyle;
+}
 
 /**
   * A Gtk.ToolItemGroup is used together with Gtk.ToolPalette to add

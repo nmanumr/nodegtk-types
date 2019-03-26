@@ -1,6 +1,16 @@
 import * as GObject from '../GObject';
 import * as Gio from '../Gio';
-export declare interface Socket extends GObject.Object, Gio.DatagramBased, Gio.Initable { }
+
+export declare interface Socket extends GObject.Object, Gio.DatagramBased, Gio.Initable {
+  conditionWait(condition: import('../GLib').IOCondition, timeout: number, cancellable: import('../Gio').Cancellable): boolean;
+  conditionWait(condition: import('../GLib').IOCondition, cancellable: import('../Gio').Cancellable): boolean;
+
+  receiveMessages(messages: import('../Gio').InputMessage, flags: number, cancellable: import('../Gio').Cancellable): number
+  receiveMessages(messages: import('../Gio').InputMessage, flags: number, timeout: number, cancellable: import('../Gio').Cancellable): number
+
+  sendMessages(messages: import('../Gio').OutputMessage, flags: number, cancellable: import('../Gio').Cancellable): number
+  sendMessages(messages: import('../Gio').OutputMessage, flags: number, timeout: number, cancellable: import('../Gio').Cancellable): number;
+}
 
 /**
   * A Gio.Socket is a low-level networking primitive. It is a more or less
