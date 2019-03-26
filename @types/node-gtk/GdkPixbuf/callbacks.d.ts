@@ -3,11 +3,11 @@
   * @param pixels The pixel array of the pixbuf that is being finalized.
   * @param data User closure data. 
   */
-export declare function pixbufDestroyNotify(pixels: Int8Array, data: Object | null): void;
+export declare type pixbufDestroyNotify = (pixels: Int8Array, data: Object | null) => void;
 /**
   * Specifies the type of the function passed to gdk_pixbuf_save_to_callback().  It is called once for each block of bytes that is “written” by gdk_pixbuf_save_to_callback().  If successful it should return True.  If an error occurs it should set error and return False, in which case gdk_pixbuf_save_to_callback() will fail with the same error.
   * @param buf bytes to be written.
   * @param data user data passed to gdk_pixbuf_save_to_callback().
   * @returns True if successful, False (with error set) if failed.   error:A location to return an error. 
   */
-export declare function pixbufSaveFunc(buf: Int8Array, data: Object | null): [boolean, import('../GLib').Error];
+export declare type pixbufSaveFunc = (buf: Int8Array, data: Object | null) => [boolean, import('../GLib').Error];
