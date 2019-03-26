@@ -99,7 +99,7 @@ export class ClassParser {
         }
     }
 
-    public parseMethods(methodEls) {
+    public parseMethods(methodEls, type = Function) {
         var methods = []
         this.$(methodEls).each((i, el) => {
             var isVirtual = this.$(el).find('.property').text().trim() == 'virtual';
@@ -121,7 +121,7 @@ export class ClassParser {
                     }
                     else if (isFunction) {
                         var id = this.$(el).children('dt').attr('id');
-                        methods.push(new Function({
+                        methods.push(new type({
                             name: name,
                             ...this.getMethodDetails(id)
                         }))
@@ -154,15 +154,15 @@ export class ClassParser {
             }))
         })
 
-        this.$('#fields table:last-of-type tbody tr').each((i, el) => {
-            attrs.push(new Property({
-                deprecated: !!this.$(el).find('td:nth-child(4)').text().match('deprecated'),
-                name: this.$(el).find('td:nth-child(1)').text(),
-                type: this.$(el).find('td:nth-child(2) a code').text(),
-                flags: this.parseFlags(this.$(el).find('td:nth-child(3)').text()),
-                docStr: this.$(el).find('td:nth-child(4)').text()
-            }))
-        })
+        // this.$('#fields table:last-of-type tbody tr').each((i, el) => {
+        //     attrs.push(new Property({
+        //         deprecated: !!this.$(el).find('td:nth-child(4)').text().match('deprecated'),
+        //         name: this.$(el).find('td:nth-child(1)').text(),
+        //         type: this.$(el).find('td:nth-child(2) a code').text(),
+        //         flags: this.parseFlags(this.$(el).find('td:nth-child(3)').text()),
+        //         docStr: this.$(el).find('td:nth-child(4)').text()
+        //     }))
+        // })
 
         return attrs;
     }

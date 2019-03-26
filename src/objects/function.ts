@@ -36,22 +36,24 @@ export function getTsType(type: string) {
         'bytes': 'Int8Array',
         'None': 'null'
     }
-    if (Array.isArray(type)){
-        type =  type.join(' | ');
+    if (Array.isArray(type)) {
+        type = type.join(' | ');
     }
+
+
     type = type.replace(/\n/g, '');
     if (typeMap[type]) {
         return typeMap[type];
     }
-    else if (type.match(/\[|\]/) && typeMap[type.replace(/\[|\]/g, '')]) {
-        return typeMap[type.replace(/\[|\]/g, '')] + '[]'
-    }
     else if (type.match(/ \| /)) {
         var types = type.split(' | ');
-        types = types.map((val) => getTsType(val))
+        types = types.map((val) => getTsType(val));
         return types.join(' | ');
     }
-    else if(type.split('.').length > 1){
+    else if (type.match(/\[|\]/)) {
+        return getTsType(type.replace(/\[|\]/g, '')) + '[]'
+    }
+    else if (type.split('.').length > 1) {
         var [lib, ...x] = type.split('.');
         return `import('../${lib}').${x.join('.')}`;
     }

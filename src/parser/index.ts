@@ -3,7 +3,7 @@ import * as rimraf from 'rimraf';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
 import { Lib } from '../objects/lib';
-import { FunctionParser } from './functionParser';
+import { FunctionParser, CallbackParser } from './functionParser';
 import { EnumParser } from './enumParser';
 import { ConstParser } from './constParser';
 import { ClassParser, InterfaceParser } from './classParser';
@@ -16,7 +16,7 @@ export class Parser {
 
     private parsersDict = {
         'functions': FunctionParser,
-        'callbacks': FunctionParser,
+        'callbacks': CallbackParser,
         'constants': ConstParser,
         'enums': EnumParser,
         'classes': ClassParser,

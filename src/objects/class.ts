@@ -17,30 +17,41 @@ export class Klass extends BaseObject {
         this.attrs = prop.attrs;
     }
 
-    write(writer?: Writer){
-        var name = this.name.split('.')[this.name.split('.').length-1];
-        var str = `${this.writeDocLn()}export declare ${this.type} ${name} `;
+    private importLib(name) {
+        var [lib, ..._] = name.split('.');
+        return `import * as ${lib} from '../${lib}';\n`;
+    }
 
-        if(this.bases.length){
-            str += 'extends '
-            for(var base of this.bases){
-                str += `${getTsType(base)}, `;
-            }
-            str = str.slice(0, -2);
+    write(writer?: Writer) {
+        var name = this.name.split('.')[this.name.split('.').length - 1];
+        var imports = '', intrface = '';
+        var str = `${this.writeDocLn()}export declare ${this.isAbstract ? 'abstract ' : ''}${this.type} ${name} `;
+
+        for (var base of this.bases) {
+            var lib = this.importLib(base)
+            if (imports.indexOf(lib) == -1)
+                imports += this.importLib(base);
         }
-        str += '{\n';
+        if (this.bases.length > 0) {
+            intrface += `export declare interface ${name} extends `;
+            for (var base of this.bases) {
+                intrface += `${base}, `;
+            }
+            intrface = intrface.slice(0, -2) + ' { }\n\n';
+        }
+        str += '{\n'
 
-        for(var attr of this.attrs){
+        for (var attr of this.attrs) {
             str += `${attr.write()}\n`;
         }
         str += '}\n';
 
-        if(writer) writer.appendText(str);
-        return str;
+        if (writer) writer.appendText(`${imports}${intrface}${str}`);
+        return `${imports}${intrface}${str}`;
     }
 }
 
-export class Interface extends Klass{
+export class Interface extends Klass {
     type = 'interface'
 }
 
@@ -118,6 +129,30 @@ export class Function extends ClassAttr {
     }
 }
 
+export class Callback extends Function {
+    prefixStr = 'export declare type ';
+
+    write(writer?: Writer) {
+        var fnStr = this.name + '= (';
+
+        if (this.args.length) {
+            for (var param of this.args) {
+                fnStr += `${param.name}: ${param.type}, `;
+            }
+            fnStr = fnStr.slice(0, -2);
+        }
+
+        if (this.returnType)
+            fnStr += `) => ${this.returnType};`
+        else
+            fnStr += `) => null;`;
+        var str = `${this.writeDocLn()}${this.prefixStr}${fnStr}`;
+
+        if (writer) writer.appendText(str);
+        return str;
+    }
+}
+
 export class Method extends Function {
     isClassMethod: boolean;
     prefixStr = '';
@@ -134,7 +169,7 @@ export class Method extends Function {
 
 export class Property extends ClassAttr {
     type: string;
-    flags: string[];
+    flags: any;
     isReadonly: boolean;
 
     constructor(prop) {
@@ -146,12 +181,12 @@ export class Property extends ClassAttr {
         this.isReadonly = prop.flags.reandonly;
     }
 
-    write(writer?:Writer){
-        var str =  this.writeDocLn();
+    write(writer?: Writer) {
+        var str = this.writeDocLn();
+        if (this.flags.readonly) str += 'readonly ';
+
         str += this.name;
-        if(this.type){
-            str += `: ${getTsType(this.type)}`;
-        }
+        if (this.type) str += `: ${getTsType(this.type)}`;
 
         if (writer) writer.appendText(str);
         return str + ';';
