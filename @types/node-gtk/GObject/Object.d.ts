@@ -2,7 +2,7 @@
   * All the fields in the GObject.Object structure are private
 to the GObject.Object implementation and should never be accessed directly. 
   */
-export declare class Object {
+ export declare class Object {
   static compatControl(what: number, data: Object | null): number;
   /**
     * Looks up the GObject.ParamSpec for a property of a class.
@@ -193,5 +193,25 @@ export declare class Object {
     * @param closure GObject.Closure to watch 
     */
   watchClosure(closure: import('../GObject').Closure): void;
-}
 
+  /**
+    * GObject.on - associates a callback to an event
+    * @param name - Name of the event
+    * @param callback - Event handler
+    */
+  on(name: string, callback: Function): void;
+
+  /**
+    * GObject.off - dissociates callback from an event
+    * @param name - Name of the event
+    * @param callback - Event handler
+    */
+  off(name: string, callback: Function): void;
+
+  /**
+    * GObject.once - as GObject.on, but only runs once
+    * @param name - Name of the event
+    * @param callback - Event handler
+    */
+  once(name: string, callback: Function): void
+}
