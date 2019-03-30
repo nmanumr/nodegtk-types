@@ -10,6 +10,9 @@ export declare interface CellAccessible extends Gtk.Accessible, Atk.Action, Atk.
 
     setDescription(desc: string): boolean;
     setDescription(i: number, desc: string): boolean;
+    
+    getPosition(coordType: import('../Atk').CoordType): [number, number];
+    getPosition(): [number, number];
 }
 
 export declare class CellAccessible {
