@@ -1,5 +1,11 @@
 import * as Gtk from '../Gtk';
-export declare interface Toolbar extends Gtk.Container, Gtk.Orientable, Gtk.ToolShell { }
+export declare interface Toolbar extends Gtk.Container, Gtk.Orientable, Gtk.ToolShell {
+  getStyle(): Gtk.ToolbarStyle;
+  getStyle(): Gtk.Style;
+
+  setStyle(style: Gtk.ToolbarStyle): void;
+  setStyle(style: Gtk.Style): void;
+}
 
 /**
   * A toolbar is created with a call to Gtk.Toolbar.new(). 
