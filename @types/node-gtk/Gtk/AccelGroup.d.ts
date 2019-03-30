@@ -1,5 +1,11 @@
 import * as GObject from '../GObject';
-export declare interface AccelGroup extends GObject.Object { }
+export declare interface AccelGroup extends GObject.Object {
+  connect(accelKey: number, accelMods: ModifierType, accelFlags: AccelFlags, closure: GObject.Closure): void
+  connect(signal: string, fn: Function): any;
+
+  disconnect(closure: GObject.Closure): boolean;
+  disconnect(signal: string, fn: Function): any;
+}
 
 /**
   * A Gtk.AccelGroup represents a group of keyboard accelerators,
