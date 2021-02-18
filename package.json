@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/cheerio": "^0.22.11",
     "cheerio": "^1.0.0-rc.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "node-gtk": "^0.2.2",
     "pretty-ms": "^4.0.0"
   },
